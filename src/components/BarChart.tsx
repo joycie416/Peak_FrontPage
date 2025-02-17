@@ -5,6 +5,18 @@ import * as d3 from 'd3';
 
 const BarChart = ({ data }: { data: number[] }) => {
   const svgRef = useRef(null);
+  const color = [
+    '#efe0ff',
+    '#e3caff',
+    '#cfa7fa',
+    '#b77df4',
+    '#a24bff',
+    '#841af6',
+    '#690fc9',
+    '#4d039d',
+    '#420c7c',
+    '#340b60',
+  ];
 
   useEffect(() => {
     if (!svgRef.current) return;
@@ -15,7 +27,7 @@ const BarChart = ({ data }: { data: number[] }) => {
       .select(svgRef.current)
       .attr('width', width)
       .attr('height', height)
-      .style('background', 'aqua')
+      .style('background', '#efe0ff')
       .style('overflow', 'visible');
 
     const xScale = d3
@@ -37,7 +49,7 @@ const BarChart = ({ data }: { data: number[] }) => {
       .attr('y', (d) => yScale(d))
       .attr('width', xScale.bandwidth())
       .attr('height', (d) => height - yScale(d))
-      .attr('fill', 'pink');
+      .attr('fill', (_, i) => color[i]);
   }, [data]);
 
   return <svg ref={svgRef}></svg>;
