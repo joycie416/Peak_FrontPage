@@ -52,7 +52,12 @@ const BarChart = ({ data }: { data: number[] }) => {
       .attr('fill', (_, i) => color[i]);
   }, [data]);
 
-  return <svg ref={svgRef}></svg>;
+  return (
+    <>
+      <svg ref={svgRef}></svg>
+      <p>- bar chart -</p>
+    </>
+  );
 };
 
 export default BarChart;
