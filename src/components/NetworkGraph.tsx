@@ -19,22 +19,55 @@ const NetworkGraph = () => {
   useEffect(() => {
     if (!svgRef.current) return;
 
-    const width = 400;
-    const height = 400;
+    const width = 800;
+    const height = 800;
 
     const nodes: Node[] = [
       { id: 1, group: 1 },
       { id: 2, group: 2 },
-      { id: 3, group: 1 },
+      { id: 3, group: 2 },
       { id: 4, group: 2 },
       { id: 5, group: 2 },
+      { id: 6, group: 2 },
+      { id: 7, group: 2 },
+      { id: 8, group: 2 },
+      { id: 9, group: 2 },
+      { id: 10, group: 2 },
+      { id: 11, group: 2 },
+      { id: 12, group: 2 },
+      { id: 13, group: 2 },
+      { id: 14, group: 2 },
+      { id: 15, group: 2 },
     ];
 
     const links: Link[] = [
       { source: nodes[0], target: nodes[1] },
+      { source: nodes[0], target: nodes[2] },
+      { source: nodes[0], target: nodes[3] },
+      { source: nodes[0], target: nodes[4] },
+      { source: nodes[0], target: nodes[5] },
+      { source: nodes[0], target: nodes[6] },
+      { source: nodes[0], target: nodes[7] },
+      { source: nodes[0], target: nodes[8] },
+      { source: nodes[0], target: nodes[9] },
+      { source: nodes[0], target: nodes[10] },
+      { source: nodes[0], target: nodes[11] },
+      { source: nodes[0], target: nodes[12] },
+      { source: nodes[0], target: nodes[13] },
+      { source: nodes[0], target: nodes[14] },
       { source: nodes[1], target: nodes[2] },
       { source: nodes[2], target: nodes[3] },
-      { source: nodes[1], target: nodes[4] },
+      { source: nodes[3], target: nodes[4] },
+      { source: nodes[4], target: nodes[5] },
+      { source: nodes[5], target: nodes[6] },
+      { source: nodes[6], target: nodes[7] },
+      { source: nodes[7], target: nodes[8] },
+      { source: nodes[8], target: nodes[9] },
+      { source: nodes[9], target: nodes[10] },
+      { source: nodes[10], target: nodes[11] },
+      { source: nodes[11], target: nodes[12] },
+      { source: nodes[12], target: nodes[13] },
+      { source: nodes[13], target: nodes[14] },
     ];
 
     const svg = d3
@@ -62,7 +95,7 @@ const NetworkGraph = () => {
       .append('line')
       .attr('class', 'link')
       .attr('stroke', '#cfa7fa')
-      .attr('stroke-width', 2);
+      .attr('stroke-width', 1);
 
     const node = svg
       .selectAll('.node')
@@ -71,7 +104,7 @@ const NetworkGraph = () => {
       .append('circle')
       .attr('class', 'node')
       .attr('r', 10)
-      .attr('fill', (d) => (d.group === 1 ? '#690fc9' : '#cf0d0d'))
+      .attr('fill', (d) => (d.group === 1 ? '#420c7c' : '#a24bff'))
       .call(
         d3
           .drag<SVGCircleElement, Node>()
