@@ -5,6 +5,7 @@ import * as d3 from 'd3';
 
 interface Node extends d3.SimulationNodeDatum {
   id: number;
+  name: string;
   group: number;
 }
 
@@ -19,25 +20,25 @@ const NetworkGraph = () => {
   useEffect(() => {
     if (!svgRef.current) return;
 
-    const width = 600;
-    const height = 600;
+    const width = 700;
+    const height = 700;
 
     const nodes: Node[] = [
-      { id: 1, group: 1 },
-      { id: 2, group: 2 },
-      { id: 3, group: 2 },
-      { id: 4, group: 2 },
-      { id: 5, group: 2 },
-      { id: 6, group: 2 },
-      { id: 7, group: 2 },
-      { id: 8, group: 2 },
-      { id: 9, group: 2 },
-      { id: 10, group: 2 },
-      { id: 11, group: 2 },
-      { id: 12, group: 2 },
-      { id: 13, group: 2 },
-      { id: 14, group: 2 },
-      { id: 15, group: 2 },
+      { id: 1, name: 'Peak', group: 1 },
+      { id: 2, name: 'Samsunng', group: 2 },
+      { id: 3, name: 'TheSunHan', group: 2 },
+      { id: 4, name: 'LG', group: 2 },
+      { id: 5, name: 'Starbucks', group: 2 },
+      { id: 6, name: 'toss', group: 2 },
+      { id: 7, name: 'RIDI', group: 2 },
+      { id: 8, name: 'TMON', group: 2 },
+      { id: 9, name: 'yanolja', group: 2 },
+      { id: 10, name: 'Airbnb', group: 2 },
+      { id: 11, name: 'WATCHA', group: 2 },
+      { id: 12, name: 'NETPLIX', group: 2 },
+      { id: 13, name: 'CGV', group: 2 },
+      { id: 14, name: 'SANDBOX', group: 2 },
+      { id: 15, name: 'wadiz', group: 2 },
     ];
 
     const links: Link[] = [
@@ -82,8 +83,8 @@ const NetworkGraph = () => {
         'link',
         d3
           .forceLink(links)
-          .id((d: d3.SimulationNodeDatum) => (d as Node).id)
-          .distance(150)
+          .id((d) => (d as Node).id)
+          .distance(250)
       )
       .force('charge', d3.forceManyBody().strength(-200))
       .force('center', d3.forceCenter(width / 2, height / 2));
@@ -101,48 +102,61 @@ const NetworkGraph = () => {
       .selectAll('.node')
       .data(nodes)
       .enter()
-      .append('circle')
+      .append('g')
       .attr('class', 'node')
-      .attr('r', 10)
-      .attr('fill', (d) => (d.group === 1 ? '#420c7c' : '#a24bff'))
       .call(
         d3
-          .drag<SVGCircleElement, Node>()
+          .drag<SVGGElement, Node, Node>()
           .on('start', dragstart)
           .on('drag', dragged)
           .on('end', dragend)
       );
 
-    function dragstart(event: d3.D3DragEvent<SVGCircleElement, Node, Node>) {
-      if (!event.active) simulation.alphaTarget(0.3).restart();
-      event.subject.fx = event.subject.x;
-      event.subject.fy = event.subject.y;
-    }
+    // 원 추가
+    node
+      .append('circle')
+      .attr('class', 'node')
+      .attr('r', 30)
+      .attr('stroke', '#efe0ff')
+      .attr('stroke-width', 1)
+      .attr('fill', (d) => (d.group === 1 ? '#420c7c' : '#a24bff'));
 
-    function dragged(event: d3.D3DragEvent<SVGCircleElement, Node, Node>) {
-      event.subject.fx = event.x;
-      event.subject.fy = event.y;
-    }
+    // 텍스트 추가
+    node
+      .append('text')
+      .attr('dy', 4)
+      .attr('text-anchor', 'middle')
+      .attr('fill', 'white')
+      .attr('font-size', '10px')
+      .text((d) => d.name);
 
-    function dragend(event: d3.D3DragEvent<SVGCircleElement, Node, Node>) {
-      if (!event.active) simulation.alphaTarget(0);
-      event.subject.fx = null;
-      event.subject.fy = null;
-    }
-
-    // 노드와 링크에 대한 업데이트
     simulation.on('tick', () => {
       link
-        .attr('x1', (d) => (d.source && d.source.x != null ? d.source.x : 0)) // 기본값 0 설정
-        .attr('y1', (d) => (d.source && d.source.y != null ? d.source.y : 0)) // 기본값 0 설정
-        .attr('x2', (d) => (d.target && d.target.x != null ? d.target.x : 0)) // 기본값 0 설정
-        .attr('y2', (d) => (d.target && d.target.y != null ? d.target.y : 0)); // 기본값 0 설정
+        .attr('x1', (d) => (d.source as any).x)
+        .attr('y1', (d) => (d.source as any).y)
+        .attr('x2', (d) => (d.target as any).x)
+        .attr('y2', (d) => (d.target as any).y);
 
-      node
-        .attr('cx', (d) => (d.x != null ? d.x : 0)) // null이 아닌 경우 값 사용, 기본값 0
-        .attr('cy', (d) => (d.y != null ? d.y : 0)); // null이 아닌 경우 값 사용, 기본값 0
+      node.attr('transform', (d) => `translate(${d.x},${d.y})`);
     });
-  });
+
+    function dragstart(event: { active: any }, d: Node) {
+      if (!event.active) simulation.alphaTarget(0.3).restart();
+      d.fx = d.x;
+      d.fy = d.y;
+    }
+
+    function dragged(event: Node, d: Node) {
+      d.fx = event.x;
+      d.fy = event.y;
+    }
+
+    function dragend(event: { active: any }, d: Node) {
+      if (!event.active) simulation.alphaTarget(0);
+      d.fx = null;
+      d.fy = null;
+    }
+  }, []);
 
   return (
     <>
