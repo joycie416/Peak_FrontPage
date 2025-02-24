@@ -19,8 +19,8 @@ const NetworkGraph = () => {
   useEffect(() => {
     if (!svgRef.current) return;
 
-    const width = 800;
-    const height = 800;
+    const width = 600;
+    const height = 600;
 
     const nodes: Node[] = [
       { id: 1, group: 1 },
