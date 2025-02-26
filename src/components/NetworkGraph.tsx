@@ -2,11 +2,13 @@
 
 import { useEffect, useRef, useState } from "react";
 import * as d3 from "d3";
+import Button from "./shared/Button";
 
 interface Node extends d3.SimulationNodeDatum {
   id: number;
   name: string;
   group: number;
+  isNew?: boolean;
 }
 
 interface Link {
@@ -132,16 +134,25 @@ const NetworkGraph = () => {
       .append("circle")
       .attr("class", "node")
       .attr("r", 30)
-      .attr("stroke", "#efe0ff")
+      .attr("stroke", (d) => {
+        if (d.isNew) return "#420c7c";
+        return "efe0ff";
+      })
       .attr("stroke-width", 1)
-      .attr("fill", (d) => (d.group === 1 ? "#420c7c" : "#a24bff"));
+      .attr("fill", (d) => {
+        if (d.isNew) return "#f0f0f0";
+        return d.group === 1 ? "#420c7c" : "#a24bff";
+      });
 
     // 노드에 텍스트 추가
     node
       .append("text")
       .attr("dy", 4)
       .attr("text-anchor", "middle")
-      .attr("fill", "white")
+      .attr("fill", (d) => {
+        if (d.isNew) return "420c7c";
+        return "white";
+      })
       .attr("font-size", "10px")
       .text((d) => d.name);
 
@@ -181,7 +192,7 @@ const NetworkGraph = () => {
       return;
     }
 
-    const newNode = { id: 16, name: "new", group: 2 };
+    const newNode = { id: 16, name: "new", group: 2, isNew: true };
 
     setNodes((prevNodes) => {
       const updatedNodes = [...prevNodes, newNode];
@@ -212,9 +223,9 @@ const NetworkGraph = () => {
       <div className="w-fit">
         <svg ref={svgRef}></svg>
         <p>- network graph -</p>
-        <button className="p-4 border rounded-xl" onClick={onAddButtonClick}>
+        <Button className="p-4 border rounded-xl" onClick={onAddButtonClick}>
           추가하기
-        </button>
+        </Button>
       </div>
     </>
   );
