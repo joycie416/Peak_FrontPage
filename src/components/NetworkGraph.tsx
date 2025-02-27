@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import * as d3 from "d3";
-import Button from "./shared/Button";
+import CompanyProfileForm from "./CompanyProfileForm";
 
 interface Node extends d3.SimulationNodeDatum {
   id: number;
@@ -186,13 +186,13 @@ const NetworkGraph = () => {
     }
   }, [nodes, links]);
 
-  const onAddButtonClick = () => {
+  const handleNode = (name: string) => {
     if (nodes.length >= 16) {
       console.log("이미 추가된 노드입니다.");
       return;
     }
 
-    const newNode = { id: 16, name: "new", group: 2, isNew: true };
+    const newNode = { id: 16, name, group: 2, isNew: true };
 
     setNodes((prevNodes) => {
       const updatedNodes = [...prevNodes, newNode];
@@ -206,15 +206,6 @@ const NetworkGraph = () => {
       return updatedNodes;
     });
 
-    // setNodes((prev) => [...prev, newNode]);
-    // setLinks((prev) => [
-    //   ...prev,
-    //   { source: nodes[0], target: newNode },
-    //   { source: nodes[13], target: newNode },
-    //   { source: nodes[14], target: newNode },
-    // ]);
-    // // nodes.push({id:16, name:'new', group:2})
-    // // links.push({source: nodes[0], target: nodes[15]},{source: nodes[1], target: nodes[15]},{source: nodes[2], target: nodes[15]})
     console.log("노드를 추가했습니다.");
   };
 
@@ -223,9 +214,7 @@ const NetworkGraph = () => {
       <div className="w-fit">
         <svg ref={svgRef}></svg>
         <p>- network graph -</p>
-        <Button className="p-4 border rounded-xl" onClick={onAddButtonClick}>
-          추가하기
-        </Button>
+        <CompanyProfileForm handleNode={handleNode} />
       </div>
     </>
   );
