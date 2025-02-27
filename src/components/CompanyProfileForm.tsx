@@ -3,6 +3,7 @@
 import { useRef, useState } from "react";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
+import { cn } from "@/lib/utils";
 
 type CompanyProfileFormProps = {
   handleNode: (name: string) => void;
@@ -43,9 +44,6 @@ const CompanyProfileForm = ({ handleNode }: CompanyProfileFormProps) => {
   //
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(fileRef.current);
-    console.log(nameRef.current);
-    console.log(nameRef.current?.value);
     if (nameRef.current && nameRef.current.value && fileRef.current) {
       handleNode(nameRef.current.value);
       return;
@@ -54,13 +52,14 @@ const CompanyProfileForm = ({ handleNode }: CompanyProfileFormProps) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex gap-2">
+    <form onSubmit={handleSubmit} className="w-full flex gap-2">
       <Input type="text" placeholder="회사명을 입력해주세요." ref={nameRef} />
-      <div className="flex h-10 w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm">
+      <div className="w-[300px] flex shrink-0 justify-between align-center h-10 border border-primary rounded-md bg-transparent text-base transition-colors">
         <Button
           onClick={() => handleFileUpload()}
           type="button"
           variant="ghost"
+          className="px-3 py-1 flex-grow justify-start overflow-hidden"
         >
           <input
             type="file"
@@ -69,9 +68,22 @@ const CompanyProfileForm = ({ handleNode }: CompanyProfileFormProps) => {
             onChange={() => handleFileChange()}
             className="hidden"
           />
-          {fileName || placeholder}
+          <p
+            className={cn(
+              "w-full break-all overflow-hidden whitespace-nowrap text-ellipsis",
+              {
+                "text-muted-foreground": !fileName,
+              }
+            )}
+          >
+            {fileName || placeholder}
+          </p>
         </Button>
-        <button type="button" onClick={() => handleFileDelete()}>
+        <button
+          type="button"
+          onClick={() => handleFileDelete()}
+          className="px-2"
+        >
           X
         </button>
       </div>

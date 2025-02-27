@@ -211,7 +211,7 @@ const NetworkGraph = () => {
 
   return (
     <>
-      <div className="w-fit">
+      <div className="w-[700px]">
         <svg ref={svgRef}></svg>
         <p>- network graph -</p>
         <CompanyProfileForm handleNode={handleNode} />
