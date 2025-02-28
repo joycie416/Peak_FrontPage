@@ -54,12 +54,12 @@ const CompanyProfileForm = ({ handleNode }: CompanyProfileFormProps) => {
   return (
     <form onSubmit={handleSubmit} className="w-full flex gap-2">
       <Input type="text" placeholder="회사명을 입력해주세요." ref={nameRef} />
-      <div className="w-[300px] flex shrink-0 justify-between align-center h-10 border border-primary rounded-md bg-transparent text-base transition-colors">
+      <div className="w-[300px] flex shrink-0 justify-between align-center h-10 border border-primary rounded-sm bg-transparent text-base transition-colors">
         <Button
           onClick={() => handleFileUpload()}
           type="button"
           variant="ghost"
-          className="px-3 py-1 flex-grow justify-start overflow-hidden"
+          className="px-3 py-1 flex-grow justify-start font-medium overflow-hidden"
         >
           <input
             type="file"
@@ -87,7 +87,7 @@ const CompanyProfileForm = ({ handleNode }: CompanyProfileFormProps) => {
           X
         </button>
       </div>
-      <Button>추가하기</Button>
+      <Button variant={"default"}>추가하기</Button>
     </form>
   );
 };
