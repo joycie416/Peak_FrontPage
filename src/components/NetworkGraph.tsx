@@ -186,27 +186,34 @@ const NetworkGraph = () => {
     }
   }, [nodes, links]);
 
-  const handleNode = (name: string) => {
-    if (nodes.length >= 16) {
-      console.log("이미 추가된 노드입니다.");
-      return;
+  const handleNode = (mode: "new" | "reset", name?: string) => {
+    if (mode === "new") {
+      if (nodes.length >= 16) {
+        alert("기존 데이터를 삭제해주세요.");
+        return;
+      }
+
+      if (name) {
+        const newNode = { id: 16, name, group: 2, isNew: true };
+
+        setNodes((prevNodes) => {
+          const updatedNodes = [...prevNodes, newNode];
+
+          setLinks((prevLinks) => [
+            ...prevLinks,
+            { source: updatedNodes[0], target: newNode },
+            { source: updatedNodes[14], target: newNode },
+          ]);
+
+          return updatedNodes;
+        });
+        console.log("노드를 추가했습니다.");
+      }
     }
-
-    const newNode = { id: 16, name, group: 2, isNew: true };
-
-    setNodes((prevNodes) => {
-      const updatedNodes = [...prevNodes, newNode];
-
-      setLinks((prevLinks) => [
-        ...prevLinks,
-        { source: updatedNodes[0], target: newNode },
-        { source: updatedNodes[14], target: newNode },
-      ]);
-
-      return updatedNodes;
-    });
-
-    console.log("노드를 추가했습니다.");
+    if (mode === "reset") {
+      setNodes(INITIAL_NODES);
+      setLinks(INITIAL_LINKS);
+    }
   };
 
   return (

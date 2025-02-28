@@ -4,12 +4,16 @@ import { useRef, useState } from "react";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { cn } from "@/lib/utils";
+import Link from "next/link";
 
 type CompanyProfileFormProps = {
-  handleNode: (name: string) => void;
+  handleNode: (mode: "new" | "reset", name?: string) => void;
 };
 
 const CompanyProfileForm = ({ handleNode }: CompanyProfileFormProps) => {
+  // form 제출 상태
+  const [submitted, setSubitted] = useState(false);
+
   // 파일 업로드 관련
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [fileName, setFileName] = useState("");
@@ -45,50 +49,82 @@ const CompanyProfileForm = ({ handleNode }: CompanyProfileFormProps) => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (nameRef.current && nameRef.current.value && fileRef.current) {
-      handleNode(nameRef.current.value);
+      handleNode("new", nameRef.current.value);
+      setSubitted(true);
       return;
     }
     alert("회사명과 파일을 입력해주세요.");
   };
 
+  const onResetClick = (
+    e?: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
+    handleFileDelete();
+    setSubitted(false);
+    handleNode("reset");
+    if (nameRef.current) nameRef.current.value = "";
+  };
+
   return (
-    <form onSubmit={handleSubmit} className="w-full flex gap-2">
-      <Input type="text" placeholder="회사명을 입력해주세요." ref={nameRef} />
-      <div className="w-[300px] flex shrink-0 justify-between align-center h-10 border border-primary rounded-sm bg-transparent text-base transition-colors">
-        <Button
-          onClick={() => handleFileUpload()}
-          type="button"
-          variant="ghost"
-          className="px-3 py-1 flex-grow justify-start font-medium overflow-hidden"
-        >
-          <input
-            type="file"
-            accept=".pdf"
-            ref={fileInputRef}
-            onChange={() => handleFileChange()}
-            className="hidden"
+    <>
+      {!submitted && (
+        <form onSubmit={handleSubmit} className="w-full flex gap-2">
+          <Input
+            type="text"
+            placeholder="회사명을 입력해주세요."
+            ref={nameRef}
           />
-          <p
-            className={cn(
-              "w-full break-all overflow-hidden whitespace-nowrap text-ellipsis",
-              {
-                "text-muted-foreground": !fileName,
-              }
-            )}
+          <div className="w-[300px] flex shrink-0 justify-between align-center h-10 border border-primary rounded-sm bg-transparent text-base transition-colors">
+            <Button
+              onClick={() => handleFileUpload()}
+              type="button"
+              variant="ghost"
+              className="px-3 py-1 flex-grow justify-start font-medium overflow-hidden"
+            >
+              <input
+                type="file"
+                accept=".pdf"
+                ref={fileInputRef}
+                onChange={() => handleFileChange()}
+                className="hidden"
+              />
+              <p
+                className={cn(
+                  "w-full break-all overflow-hidden whitespace-nowrap text-ellipsis",
+                  {
+                    "text-muted-foreground": !fileName,
+                  }
+                )}
+              >
+                {fileName || placeholder}
+              </p>
+            </Button>
+            <button
+              type="button"
+              onClick={() => handleFileDelete()}
+              className="px-2"
+            >
+              X
+            </button>
+          </div>
+          <Button variant={"default"}>추가하기</Button>
+        </form>
+      )}
+      {submitted && (
+        <div>
+          <Link href={"#"} onClick={() => alert("페이지 이동")}>
+            결과 페이지로 이동
+          </Link>
+          <Button
+            variant={"ghost"}
+            className="p-0 underline"
+            onClick={onResetClick}
           >
-            {fileName || placeholder}
-          </p>
-        </Button>
-        <button
-          type="button"
-          onClick={() => handleFileDelete()}
-          className="px-2"
-        >
-          X
-        </button>
-      </div>
-      <Button variant={"default"}>추가하기</Button>
-    </form>
+            다시 재출하기
+          </Button>
+        </div>
+      )}
+    </>
   );
 };
 

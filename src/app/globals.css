@@ -63,25 +63,6 @@
 }
 
 @layer components {
-  .button {
-    @apply h-10 px-[30px] py-[10px] border rounded-[4px] text-[16px] font-bold leading-[120%];
-  }
-
-  .button_primary {
-    @apply bg-primary border-primary text-white;
-  }
-
-  .button_secondary {
-    @apply bg-primary/10 border-primary text-primary;
-  }
-
-  .button_tertiary {
-    @apply bg-white border-primary text-primary;
-  }
-
-  .button_disabled {
-    @apply disabled:bg-white disabled:border-gray-50 disabled:text-gray-300;
-  }
 }
 
 @layer base {
