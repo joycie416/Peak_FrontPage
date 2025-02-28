@@ -79,7 +79,7 @@ const CompanyProfileForm = ({ handleNode }: CompanyProfileFormProps) => {
               onClick={() => handleFileUpload()}
               type="button"
               variant="ghost"
-              className="px-3 py-1 flex-grow justify-start font-medium overflow-hidden"
+              className="px-3 py-1 flex-grow font-medium text-left overflow-hidden"
             >
               <input
                 type="file"

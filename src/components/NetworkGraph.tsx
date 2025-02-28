@@ -65,23 +65,52 @@ const INITIAL_LINKS: Link[] = [
 ];
 
 const NetworkGraph = () => {
-  const svgRef = useRef(null);
+  const svgRef = useRef<SVGSVGElement>(null);
+  const simulationRef = useRef<d3.Simulation<Node, Link>>(null);
 
   const [nodes, setNodes] = useState<Node[]>(() => INITIAL_NODES);
-
   const [links, setLinks] = useState<Link[]>(() =>
     INITIAL_LINKS.map((link) => ({ source: link.source, target: link.target }))
   );
 
-  useEffect(() => {
-    if (!svgRef.current) return;
+  // 그래프뷰 폭 조절
+  const [width, setWidth] = useState(() => {
+    if (typeof window === "undefined") return 1080;
+    return window.innerWidth;
+  });
 
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const handleResize = () => {
+      const width = window.innerWidth;
+      setWidth(width);
+      createGraph(width);
+
+      setPeakCenter(width);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  // 그래프뷰 생성
+
+  const createGraph = (width: number) => {
     // 기존 simulation이 있을 경우 중지하고 다시 실행
     d3.select(svgRef.current).selectAll("*").remove();
 
+    // simulation이 있으면 중지
+    if (simulationRef.current) {
+      simulationRef.current.stop();
+    }
+
     // graph가 그려질 사이즈
-    const width = 700;
-    const height = 700;
+    // const width = 700;
+    const height = Math.ceil(width * (9 / 16));
 
     // svg 요소 설정
     const svg = d3
@@ -103,6 +132,9 @@ const NetworkGraph = () => {
       )
       .force("charge", d3.forceManyBody().strength(-200)) // 노드 간 멀어지는 힘 (음수)
       .force("center", d3.forceCenter(width / 2, height / 2)); // 화면 중앙 정렬
+
+    // simulation 저장 (resize 시 화면 중앙 정렬 위함)
+    simulationRef.current = simulation;
 
     // 링크 설정
     const link = svg
@@ -167,6 +199,9 @@ const NetworkGraph = () => {
       node.attr("transform", (d) => `translate(${d.x},${d.y})`);
     });
 
+    // Peak를 중앙에 놓기
+    setPeakCenter(width);
+
     // 노드 드래그 이벤트 관련 함수들
     function dragstart(event: { active: any }, d: Node) {
       if (!event.active) simulation.alphaTarget(0.3).restart(); // 물리 엔진 활성화, 0.3: 업데이트 시간
@@ -184,7 +219,34 @@ const NetworkGraph = () => {
       d.fx = null;
       d.fy = null;
     }
-  }, [nodes, links]);
+  };
+
+  // Peak를 중앙에 놓기
+  const setPeakCenter = (width: number) => {
+    const height = Math.ceil(width * (9 / 16));
+
+    if (simulationRef.current) {
+      simulationRef.current.nodes().forEach((node) => {
+        if (node.id === 1) {
+          node.fx = width / 2;
+          node.fy = height / 2;
+        }
+      });
+
+      simulationRef.current
+        .force("center", d3.forceCenter(width / 2, height / 2))
+        .restart();
+    }
+  };
+
+  useEffect(() => {
+    if (!svgRef.current) return;
+
+    // 기존 simulation이 있을 경우 중지하고 다시 실행
+    d3.select(svgRef.current).selectAll("*").remove();
+
+    createGraph(width);
+  }, [nodes, width]);
 
   const handleNode = (mode: "new" | "reset", name?: string) => {
     if (mode === "new") {
@@ -203,6 +265,7 @@ const NetworkGraph = () => {
             ...prevLinks,
             { source: updatedNodes[0], target: newNode },
             { source: updatedNodes[14], target: newNode },
+            { source: updatedNodes[1], target: newNode },
           ]);
 
           return updatedNodes;
@@ -218,7 +281,7 @@ const NetworkGraph = () => {
 
   return (
     <>
-      <div className="w-[700px]">
+      <div className="w-full">
         <svg ref={svgRef}></svg>
         <p>- network graph -</p>
         <CompanyProfileForm handleNode={handleNode} />
