@@ -28,7 +28,7 @@ const INITIAL_NODES: Node[] = [
   { id: 9, name: "yanolja", group: 2 },
   { id: 10, name: "Airbnb", group: 2 },
   { id: 11, name: "WATCHA", group: 2 },
-  { id: 12, name: "NETPLIX", group: 2 },
+  { id: 12, name: "NETFLIX", group: 2 },
   { id: 13, name: "CGV", group: 2 },
   { id: 14, name: "SANDBOX", group: 2 },
   { id: 15, name: "wadiz", group: 2 },
@@ -64,6 +64,8 @@ const INITIAL_LINKS: Link[] = [
   { source: INITIAL_NODES[13], target: INITIAL_NODES[14] },
 ];
 
+type Size = { width: number; height: number };
+
 const NetworkGraph = () => {
   const svgRef = useRef<SVGSVGElement>(null);
   const simulationRef = useRef<d3.Simulation<Node, Link>>(null);
@@ -74,9 +76,9 @@ const NetworkGraph = () => {
   );
 
   // 그래프뷰 폭 조절
-  const [width, setWidth] = useState(() => {
-    if (typeof window === "undefined") return 1080;
-    return window.innerWidth;
+  const [{ width, height }, setSize] = useState<Size>(() => {
+    if (typeof window === "undefined") return { width: 1920, height: 1080 };
+    return { width: window.innerWidth, height: window.innerHeight };
   });
 
   useEffect(() => {
@@ -84,10 +86,11 @@ const NetworkGraph = () => {
 
     const handleResize = () => {
       const width = window.innerWidth;
-      setWidth(width);
-      createGraph(width);
+      const height = window.innerHeight;
+      setSize({ width, height });
+      createGraph({ width, height });
 
-      setPeakCenter(width);
+      setPeakCenter({ width, height });
     };
 
     window.addEventListener("resize", handleResize);
@@ -99,7 +102,7 @@ const NetworkGraph = () => {
 
   // 그래프뷰 생성
 
-  const createGraph = (width: number) => {
+  const createGraph = ({ width, height }: Size) => {
     // 기존 simulation이 있을 경우 중지하고 다시 실행
     d3.select(svgRef.current).selectAll("*").remove();
 
@@ -107,10 +110,6 @@ const NetworkGraph = () => {
     if (simulationRef.current) {
       simulationRef.current.stop();
     }
-
-    // graph가 그려질 사이즈
-    // const width = 700;
-    const height = Math.ceil(width * (9 / 16));
 
     // svg 요소 설정
     const svg = d3
@@ -200,7 +199,7 @@ const NetworkGraph = () => {
     });
 
     // Peak를 중앙에 놓기
-    setPeakCenter(width);
+    setPeakCenter({ width, height });
 
     // 노드 드래그 이벤트 관련 함수들
     function dragstart(event: { active: any }, d: Node) {
@@ -222,9 +221,7 @@ const NetworkGraph = () => {
   };
 
   // Peak를 중앙에 놓기
-  const setPeakCenter = (width: number) => {
-    const height = Math.ceil(width * (9 / 16));
-
+  const setPeakCenter = ({ width, height }: Size) => {
     if (simulationRef.current) {
       simulationRef.current.nodes().forEach((node) => {
         if (node.id === 1) {
@@ -245,8 +242,8 @@ const NetworkGraph = () => {
     // 기존 simulation이 있을 경우 중지하고 다시 실행
     d3.select(svgRef.current).selectAll("*").remove();
 
-    createGraph(width);
-  }, [nodes, width]);
+    createGraph({ width, height });
+  }, [nodes, width, height]);
 
   const handleNode = (mode: "new" | "reset", name?: string) => {
     if (mode === "new") {
@@ -280,13 +277,10 @@ const NetworkGraph = () => {
   };
 
   return (
-    <>
-      <div className="w-full">
-        <svg ref={svgRef}></svg>
-        <p>- network graph -</p>
-        <CompanyProfileForm handleNode={handleNode} />
-      </div>
-    </>
+    <div className="w-full h-full bg-black relative">
+      <svg ref={svgRef}></svg>
+      <CompanyProfileForm handleNode={handleNode} />
+    </div>
   );
 };
 

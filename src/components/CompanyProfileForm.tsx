@@ -5,6 +5,7 @@ import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
+import { X } from "lucide-react";
 
 type CompanyProfileFormProps = {
   handleNode: (mode: "new" | "reset", name?: string) => void;
@@ -68,18 +69,22 @@ const CompanyProfileForm = ({ handleNode }: CompanyProfileFormProps) => {
   return (
     <>
       {!submitted && (
-        <form onSubmit={handleSubmit} className="w-full flex gap-2">
+        <form
+          onSubmit={handleSubmit}
+          className="w-full flex gap-2 absolute bottom-[10%] left-[30px]"
+        >
           <Input
             type="text"
             placeholder="회사명을 입력해주세요."
             ref={nameRef}
+            className="w-[300px] text-white"
           />
           <div className="w-[300px] flex shrink-0 justify-between align-center h-10 border border-primary rounded-sm bg-transparent text-base transition-colors">
             <Button
               onClick={() => handleFileUpload()}
               type="button"
               variant="ghost"
-              className="px-3 py-1 flex-grow font-medium text-left overflow-hidden"
+              className="px-3 py-1 flex-grow font-medium text-white text-left overflow-hidden"
             >
               <input
                 type="file"
@@ -104,20 +109,20 @@ const CompanyProfileForm = ({ handleNode }: CompanyProfileFormProps) => {
               onClick={() => handleFileDelete()}
               className="px-2"
             >
-              X
+              <X color="gray" />
             </button>
           </div>
           <Button variant={"default"}>추가하기</Button>
         </form>
       )}
       {submitted && (
-        <div>
+        <div className="flex flex-col items-start gap-2 absolute bottom-[10%] left-[30px]">
           <Link href={"#"} onClick={() => alert("페이지 이동")}>
-            결과 페이지로 이동
+            <Button>결과 페이지로 이동</Button>
           </Link>
           <Button
             variant={"ghost"}
-            className="p-0 underline"
+            className="h-fit p-0 font-medium text-[12px] text-primary underline hover:unset"
             onClick={onResetClick}
           >
             다시 재출하기

@@ -66,6 +66,15 @@ export default {
       boxShadow: {
         custom: "4px 12px 20px #F0ECF8",
       },
+      keyframes: {
+        top_fadeout: {
+          "0%": { opacity: "1" },
+          "100%": { opacity: "0" },
+        },
+      },
+      animation: {
+        top_fadeout: "top_fadeout 1.5s ease-in forwards",
+      },
     },
   },
   plugins: [require("tailwindcss-animate")],
