@@ -66,6 +66,9 @@ export default {
       boxShadow: {
         custom: "4px 12px 20px #F0ECF8",
       },
+      width: {
+        "main-width": "var(--main-width)",
+      },
       keyframes: {
         top_fadeout: {
           "0%": { opacity: "1" },

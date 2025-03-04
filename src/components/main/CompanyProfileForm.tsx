@@ -1,8 +1,8 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { Button } from "./ui/button";
-import { Input } from "./ui/input";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { X } from "lucide-react";
@@ -57,14 +57,14 @@ const CompanyProfileForm = ({ handleNode }: CompanyProfileFormProps) => {
     alert("회사명과 파일을 입력해주세요.");
   };
 
-  const onResetClick = (
+  const onResetClick = () =>
     // e?: React.MouseEvent<HTMLButtonElement, MouseEvent>
-  ) => {
-    handleFileDelete();
-    setSubitted(false);
-    handleNode("reset");
-    if (nameRef.current) nameRef.current.value = "";
-  };
+    {
+      handleFileDelete();
+      setSubitted(false);
+      handleNode("reset");
+      if (nameRef.current) nameRef.current.value = "";
+    };
 
   return (
     <>

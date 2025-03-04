@@ -1,13 +1,11 @@
-import BarChart from "@/components/BarChart";
-import Top from "@/components/Top";
+import DataSection from "@/components/main/DataSection";
+import Top from "@/components/main/TopSection";
 
 export default function Home() {
-  const data = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50];
-
   return (
     <div className="flex flex-col items-center">
       <Top />
-      <BarChart data={data} />
+      <DataSection />
     </div>
   );
 }

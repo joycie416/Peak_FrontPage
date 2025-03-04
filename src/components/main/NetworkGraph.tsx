@@ -192,10 +192,13 @@ const NetworkGraph = () => {
     // 물리 법칙 적용시 매 프레임마다 실행되는 이벤트
     simulation.on("tick", () => {
       link
-        .attr("x1", (d) => !(d.source as Node).x)
-        .attr("y1", (d) => !(d.source as Node).y)
-        .attr("x2", (d) => !(d.target as Node).x)
-        .attr("y2", (d) => !(d.target as Node).y);
+        .attr("x1", (d: Link) => {
+          console.log(d.source);
+          return d.source.x as number;
+        })
+        .attr("y1", (d: Link) => d.source.y as number)
+        .attr("x2", (d: Link) => d.target.x as number)
+        .attr("y2", (d: Link) => d.target.y as number);
       // 노드 위치 설정 (d.x, d.y)로
       node.attr("transform", (d) => `translate(${d.x},${d.y})`);
     });
