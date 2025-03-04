@@ -70,6 +70,9 @@ export default {
       width: {
         "main-width": "var(--main-width)",
       },
+      minWidth: {
+        "main-width": "var(--main-width)",
+      },
       fontFamily: {
         pretendard: ["var(--font-pretendard)"],
       },
