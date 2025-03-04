@@ -1,7 +1,9 @@
+import DataContent from "./data/DataContent";
+
 const DataSection = () => {
   return (
-    <section id="data-wrapper" className="w-main-width mx-auto bg-gray-500">
-      <p>DataSection</p>
+    <section id="data-wrapper" className="w-main-width mx-auto">
+      <DataContent />
     </section>
   );
 };

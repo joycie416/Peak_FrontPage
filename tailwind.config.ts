@@ -22,6 +22,7 @@ export default {
         },
         gray: {
           "50": "#D3CFDA",
+          "70": "#F4F4F4",
           "100": "#F5F5F5",
           "300": "#9E9E9E",
           "700": "#282828",
@@ -68,6 +69,9 @@ export default {
       },
       width: {
         "main-width": "var(--main-width)",
+      },
+      fontFamily: {
+        pretendard: ["var(--font-pretendard)"],
       },
       keyframes: {
         top_fadeout: {
