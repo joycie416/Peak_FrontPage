@@ -66,6 +66,8 @@ const INITIAL_LINKS: Link[] = [
 
 type Size = { width: number; height: number };
 
+type DragEventType = d3.D3DragEvent<SVGGElement, Node, Node>;
+
 const NetworkGraph = () => {
   const svgRef = useRef<SVGSVGElement>(null);
   const simulationRef = useRef<d3.Simulation<Node, Link>>(null);
@@ -190,10 +192,10 @@ const NetworkGraph = () => {
     // 물리 법칙 적용시 매 프레임마다 실행되는 이벤트
     simulation.on("tick", () => {
       link
-        .attr("x1", (d) => (d.source as any).x)
-        .attr("y1", (d) => (d.source as any).y)
-        .attr("x2", (d) => (d.target as any).x)
-        .attr("y2", (d) => (d.target as any).y);
+        .attr("x1", (d) => !(d.source as Node).x)
+        .attr("y1", (d) => !(d.source as Node).y)
+        .attr("x2", (d) => !(d.target as Node).x)
+        .attr("y2", (d) => !(d.target as Node).y);
       // 노드 위치 설정 (d.x, d.y)로
       node.attr("transform", (d) => `translate(${d.x},${d.y})`);
     });
@@ -202,7 +204,7 @@ const NetworkGraph = () => {
     setPeakCenter({ width, height });
 
     // 노드 드래그 이벤트 관련 함수들
-    function dragstart(event: { active: any }, d: Node) {
+    function dragstart(event: DragEventType, d: Node) {
       if (!event.active) simulation.alphaTarget(0.3).restart(); // 물리 엔진 활성화, 0.3: 업데이트 시간
       d.fx = d.x;
       d.fy = d.y;
@@ -213,7 +215,7 @@ const NetworkGraph = () => {
       d.fy = event.y;
     }
 
-    function dragend(event: { active: any }, d: Node) {
+    function dragend(event: DragEventType, d: Node) {
       if (!event.active) simulation.alphaTarget(0);
       d.fx = null;
       d.fy = null;

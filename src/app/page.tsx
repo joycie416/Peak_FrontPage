@@ -1,5 +1,4 @@
 import BarChart from "@/components/BarChart";
-import NetworkGraph from "@/components/NetworkGraph";
 import Top from "@/components/Top";
 
 export default function Home() {

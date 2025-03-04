@@ -58,7 +58,7 @@ const CompanyProfileForm = ({ handleNode }: CompanyProfileFormProps) => {
   };
 
   const onResetClick = (
-    e?: React.MouseEvent<HTMLButtonElement, MouseEvent>
+    // e?: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
     handleFileDelete();
     setSubitted(false);
