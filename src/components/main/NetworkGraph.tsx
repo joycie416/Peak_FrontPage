@@ -192,10 +192,7 @@ const NetworkGraph = () => {
     // 물리 법칙 적용시 매 프레임마다 실행되는 이벤트
     simulation.on("tick", () => {
       link
-        .attr("x1", (d: Link) => {
-          console.log(d.source);
-          return d.source.x as number;
-        })
+        .attr("x1", (d: Link) => d.source.x as number)
         .attr("y1", (d: Link) => d.source.y as number)
         .attr("x2", (d: Link) => d.target.x as number)
         .attr("y2", (d: Link) => d.target.y as number);
