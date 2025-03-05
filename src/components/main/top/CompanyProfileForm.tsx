@@ -71,7 +71,7 @@ const CompanyProfileForm = ({ handleNode }: CompanyProfileFormProps) => {
       {!submitted && (
         <form
           onSubmit={handleSubmit}
-          className="w-full flex gap-2 absolute bottom-[10%] left-[30px]"
+          className="w-fit flex gap-2 absolute bottom-[10%] left-[30px]"
         >
           <Input
             type="text"
