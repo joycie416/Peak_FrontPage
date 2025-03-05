@@ -1,6 +1,5 @@
 import CaseStudy from "./CaseStudy";
 import Price from "./Price";
-import ServiceBottom from "./ServiceBottom";
 
 const ServiceContent = () => {
   return (

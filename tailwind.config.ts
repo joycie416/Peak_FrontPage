@@ -74,6 +74,9 @@ export default {
       minWidth: {
         "main-width": "var(--main-width)",
       },
+      maxWidth: {
+        "main-width": "var(--main-width)",
+      },
       fontFamily: {
         pretendard: ["var(--font-pretendard)"],
         chakra: ["var(--font-chakra)"],
