@@ -24,6 +24,7 @@ export default {
           "50": "#D3CFDA",
           "70": "#F4F4F4",
           "100": "#F5F5F5",
+          "200": "#C1C1C1",
           "300": "#9E9E9E",
           "700": "#282828",
           "800": "#1B1B1B",
@@ -80,6 +81,7 @@ export default {
       fontFamily: {
         pretendard: ["var(--font-pretendard)"],
         chakra: ["var(--font-chakra)"],
+        manrope: ["var(--font-manrope)"],
       },
       keyframes: {
         top_fadeout: {

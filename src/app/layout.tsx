@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
-import { Chakra_Petch } from "next/font/google";
+import { Chakra_Petch, Manrope } from "next/font/google";
 import "./globals.css";
+import Footer from "@/components/rootlayout/Footer";
 
 const chakra = Chakra_Petch({
   variable: "--font-chakra",
@@ -8,11 +9,11 @@ const chakra = Chakra_Petch({
   weight: ["300", "400", "500", "600", "700"],
 });
 
-// const manrope = Manrope({
-//   variable: "--font-manrope",
-//   subsets: ["latin"],
-//   // weight: ["300", "400", "500", "600", "700"],
-// });
+const manrope = Manrope({
+  variable: "--font-manrope",
+  subsets: ["latin"],
+  // weight: ["300", "400", "500", "600", "700"],
+});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -26,7 +27,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
-      <body className={`${chakra.className} antialiased`}>{children}</body>
+      <body className={`${chakra.className} antialiased`}>
+        {children}
+        <Footer />
+      </body>
     </html>
   );
 }
