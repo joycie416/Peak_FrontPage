@@ -11,7 +11,7 @@ const chakra = Chakra_Petch({
 
 const manrope = Manrope({
   variable: "--font-manrope",
-  subsets: ["latin"],
+  subsets: ["latin", "latin-ext"],
   // weight: ["300", "400", "500", "600", "700"],
 });
 
