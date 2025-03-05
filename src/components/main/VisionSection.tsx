@@ -1,12 +1,17 @@
-"use client";
+"use client"; // 링크 연결되면 삭제
 
 import Link from "next/link";
 import React from "react";
+// import Background2 from "../../../public/main/vision-background-crop.svg";
 
 const VisionSection = () => {
   return (
     <section id="vision-wrapper" className="w-full min-w-main-width p-[50px]">
-      <div className="w-full py-[150px] rounded-[30px] bg-black text-white overflow-hidden">
+      <div
+        className={
+          "w-full py-[150px] rounded-[30px] bg-[url('/main/vision-background-crop.png')] bg-center bg-cover bg-no-repeat text-white overflow-hidden"
+        }
+      >
         <div className="w-full max-w-main-width px-[50px] mx-auto flex justify-between items-center">
           <div className="shrink-0">
             <p className="text-[50px]/[0.7] tracking-[-1.25px] font-bold font-pretendard mb-[30px]">
