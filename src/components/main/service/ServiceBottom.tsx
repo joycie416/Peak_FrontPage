@@ -1,15 +1,15 @@
-import Image from "next/image";
-import Mask from "@public/main/mask-scaled.svg";
+// import Image from "next/image";
+// import Mask from "@public/main/mask-scaled.svg";
 
 const ServiceBottom = () => {
   return (
     <div className="w-full pt-[150px] pb-[100px] text-white overflow-hidden relative service_bottom_gradient">
-      <Image
+      {/* <Image
         src={Mask}
         alt="배경 효과"
         height={590}
         className="h-full absolute top-0 bottom-0 object-cover origin-center"
-      />
+      /> */}
       <p className="text-[55px] tracking-[-2px] font-bold text-center mb-[30px]">
         Hear what our <br />
         customers say about our AI solutions

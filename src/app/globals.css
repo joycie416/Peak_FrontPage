@@ -97,13 +97,17 @@
 
 @layer utilities {
   .service_bottom_gradient {
-    background: linear-gradient(
-      to bottom,
-      #06040d 0%,
-      #190f4b 26%,
-      #5b2dd5 51%,
-      #8b69e4 75%,
-      #bca5f3 100%
-    );
+    background: url("/main/mask-scaled.svg"),
+      linear-gradient(
+        to bottom,
+        #06040d 0%,
+        #190f4b 26%,
+        #5b2dd5 51%,
+        #8b69e4 75%,
+        #bca5f3 100%
+      );
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
   }
 }
