@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Chakra_Petch, Manrope } from "next/font/google";
+import { Chakra_Petch } from "next/font/google";
 import "./globals.css";
 import Footer from "@/components/rootlayout/Footer";
 
@@ -7,12 +7,6 @@ const chakra = Chakra_Petch({
   variable: "--font-chakra",
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
-});
-
-const manrope = Manrope({
-  variable: "--font-manrope",
-  subsets: ["latin", "latin-ext"],
-  // weight: ["300", "400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
