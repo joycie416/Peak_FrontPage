@@ -22,10 +22,13 @@ export default {
         },
         gray: {
           "50": "#D3CFDA",
+          "70": "#F4F4F4",
           "100": "#F5F5F5",
+          "200": "#C1C1C1",
           "300": "#9E9E9E",
           "700": "#282828",
-          "900": "#000000",
+          "800": "#1B1B1B",
+          "900": "#06040D",
         },
         card: {
           DEFAULT: "hsl(var(--card))",
@@ -65,6 +68,20 @@ export default {
       },
       boxShadow: {
         custom: "4px 12px 20px #F0ECF8",
+      },
+      width: {
+        "main-width": "var(--main-width)",
+      },
+      minWidth: {
+        "main-width": "var(--main-width)",
+      },
+      maxWidth: {
+        "main-width": "var(--main-width)",
+      },
+      fontFamily: {
+        pretendard: ["var(--font-pretendard)"],
+        chakra: ["var(--font-chakra)"],
+        manrope: ["var(--font-manrope)"],
       },
       keyframes: {
         top_fadeout: {

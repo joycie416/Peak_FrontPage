@@ -1,13 +1,19 @@
-import BarChart from "@/components/BarChart";
-import Top from "@/components/Top";
+import ServiceSection from "@/components/main/ServiceSection";
+import DataSection from "@/components/main/DataSection";
+import FeatureSection from "@/components/main/FeatureSection";
+import GoalSection from "@/components/main/GoalSection";
+import Top from "@/components/main/TopSection";
+import VisionSection from "@/components/main/VisionSection";
 
 export default function Home() {
-  const data = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50];
-
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col">
       <Top />
-      <BarChart data={data} />
+      <DataSection />
+      <GoalSection />
+      <FeatureSection />
+      <ServiceSection />
+      <VisionSection />
     </div>
   );
 }
