@@ -21,8 +21,8 @@ const Footer = () => {
 
   return (
     <div className="w-full h-[644px] min-w-main-width pt-[100px] flex flex-col justify-between bg-gray-900">
-      <div className="flex-grow relative">
-        <div className={`${manrope.className} max-w-main-width mx-auto`}>
+      <div className="w-full max-w-main-width mx-auto flex-grow relative">
+        <div className={`${manrope.className}`}>
           <div className="flex gap-2 items-center mb-[30px]">
             <Image src={Peak} alt="PEAK 아이콘" />
             <p className="text-white text-[20px]/[1.5] font-bold">
