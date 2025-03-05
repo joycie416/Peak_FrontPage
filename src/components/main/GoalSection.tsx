@@ -11,7 +11,7 @@ const GoalSection = () => {
       <Image
         src={GoalGraphic}
         alt="goal-graphic"
-        className="absolute top-0 bottom-0 right-0"
+        className="absolute top-0 bottom-0 right-0 pointer-events-none"
       />
       <div className="w-main-width mx-auto">
         <GoalContent />
