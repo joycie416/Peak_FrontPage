@@ -5,11 +5,12 @@ import Card from "./Card";
 
 const sora = Sora({
   variable: "--font-sora",
+  subsets: ["latin", "latin-ext"],
 });
 
 const manrope = Manrope({
   variable: "--font-manrope",
-  subsets: ["latin"],
+  subsets: ["latin", "latin-ext"],
 });
 
 const DataContent = () => {
