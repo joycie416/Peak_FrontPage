@@ -26,7 +26,8 @@ export default {
           "100": "#F5F5F5",
           "300": "#9E9E9E",
           "700": "#282828",
-          "900": "#000000",
+          "800": "#1B1B1B",
+          "900": "#06040D",
         },
         card: {
           DEFAULT: "hsl(var(--card))",
@@ -75,6 +76,7 @@ export default {
       },
       fontFamily: {
         pretendard: ["var(--font-pretendard)"],
+        chakra: ["var(--font-chakra)"],
       },
       keyframes: {
         top_fadeout: {

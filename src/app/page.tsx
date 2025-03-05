@@ -1,3 +1,4 @@
+import CaseStudySection from "@/components/main/ServiceSection";
 import DataSection from "@/components/main/DataSection";
 import FeatureSection from "@/components/main/FeatureSection";
 import GoalSection from "@/components/main/GoalSection";
@@ -10,6 +11,7 @@ export default function Home() {
       <DataSection />
       <GoalSection />
       <FeatureSection />
+      <CaseStudySection />
     </div>
   );
 }
