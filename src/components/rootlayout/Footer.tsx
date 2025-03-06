@@ -17,19 +17,21 @@ const manrope = Manrope({
 });
 
 const Footer = () => {
-  const footerTextStyle = "text-[16px]/[2.5] text-medium text-manrope";
+  const footerTextStyle =
+    "text-medium text-manrope text-[10px]/[2] md:text-[16px]/[2.5]";
+  const iconStyle = "w-[16px] md:w-[34px]";
 
   return (
-    <div className="w-full h-[644px] min-w-main-width pt-[100px] flex flex-col justify-between bg-gray-900">
-      <div className="w-full max-w-main-width mx-auto flex-grow relative">
+    <div className="w-full xl:min-w-desktop-width flex flex-col justify-between bg-gray-900 h-[350px] pt-[20px] md:h-[644px] md:pt-[100px]">
+      <div className="w-full xl:max-w-desktop-width mx-auto flex-grow relative px-[20px] md:px-0">
         <div className={`${manrope.className}`}>
-          <div className="flex gap-2 items-center mb-[30px]">
+          <div className="flex gap-2 items-center mb-[20px] md:mb-[30px]">
             <Image src={Peak} alt="PEAK 아이콘" />
             <p className="text-white text-[20px]/[1.5] font-bold">
               더선한 주식회사
             </p>
           </div>
-          <div className="grid grid-cols-[248px_335px_auto] text-gray-200">
+          <div className="grid text-gray-200 grid-cols-[repeat(2,_1fr)] md:grid-cols-[248px_335px_auto]">
             <div className="grid grid-rows-5">
               <p className={footerTextStyle}>대표이사 | 권태욱</p>
               <p className={footerTextStyle}>문 의 | david@goodai.kr</p>
@@ -47,7 +49,7 @@ const Footer = () => {
               </p>
               <p className={footerTextStyle}>소프트웨어사업자 | B32-208587</p>
             </div>
-            <div className="h-fit flex items-center gap-[15px]">
+            <div className="h-fit flex items-center gap-[15px] max-md:hidden">
               <Link href={"#"} onClick={() => alert("인스타그램")}>
                 <Image src={Instagram} alt="인스타그램 아이콘" />
               </Link>
@@ -60,14 +62,29 @@ const Footer = () => {
             </div>
           </div>
         </div>
+        <div className="h-fit flex items-center gap-2 mt-[20px] md:gap-[15px] md:hidden">
+          <Link href={"#"} onClick={() => alert("인스타그램")}>
+            <Image
+              src={Instagram}
+              alt="인스타그램 아이콘"
+              className={iconStyle}
+            />
+          </Link>
+          <Link href={"#"} onClick={() => alert("네이버")}>
+            <Image src={Naver} alt="네이버 아이콘" className={iconStyle} />
+          </Link>
+          <Link href={"#"} onClick={() => alert("유튜브")}>
+            <Image src={Youtube} alt="유튜브 아이콘" className={iconStyle} />
+          </Link>
+        </div>
         <Image
           src={PeakLogo}
           alt="PEAK 로고"
-          className="absolute bottom-0 right-0"
+          className="absolute bottom-0 right-0 w-[200px] md:bottom-0 md:right-0 md:w-[585px]"
         />
       </div>
-      <div className="w-full h-[65px] border-1 border-t border-white text-white font-pretendard">
-        <div className="w-full max-w-main-width h-full px-[30px] mx-auto flex justify-between items-center text-[14px] leading-[24px]">
+      <div className="w-full border-1 border-t border-white text-white font-pretendard h-[30px] md:h-[65px]">
+        <div className="w-full xl:max-w-desktop-width h-full mx-auto flex justify-between items-center px-[20px] text-[8px]/[1.5] md:px-[30px] md:text-[14px] md:leading-[24px]">
           <p className="font-medium">
             ©TheSunhan{" "}
             {new Date().getFullYear().toLocaleString("ko-KR").replace(",", "")}.

@@ -6,28 +6,31 @@ import React from "react";
 
 const VisionSection = () => {
   return (
-    <section id="vision-wrapper" className="w-full min-w-main-width p-[50px]">
+    <section
+      id="vision-wrapper"
+      className="w-full xl:min-w-desktop-width p-[20px] md:p-[50px]"
+    >
       <div
         className={
-          "w-full py-[150px] rounded-[30px] bg-[url('/main/vision-background-crop.png')] bg-center bg-cover bg-no-repeat text-white overflow-hidden"
+          "w-full bg-[url('/main/vision-background-crop.png')] bg-center bg-cover bg-no-repeat text-white overflow-hidden p-[20px] rounded-[10px] md:px-[50px] md:py-[150px] md:rounded-[30px]"
         }
       >
-        <div className="w-full max-w-main-width px-[50px] mx-auto flex justify-between items-center">
+        <div className="w-full xl:max-w-desktop-width mx-auto flex justify-between items-center">
           <div className="shrink-0">
-            <p className="text-[50px]/[0.7] tracking-[-1.25px] font-bold font-pretendard mb-[30px]">
+            <p className="tracking-[-1.25px] font-bold font-pretendard text-[20px]/[0.7] mb-[20px] md:text-[50px]/[0.7] md:mb-[30px]">
               협력하여 선을 이루고자 합니다.
             </p>
-            <p className="text-[40px] leading-[35px] tracking-[-1.25px] font-normal mb-[50px]">
+            <p className="tracking-[-1.25px] font-normal text-[16px]/[1] mb-[25px] text-[40px] md:leading-[35px] md:mb-[50px]">
               Works for the Good!
             </p>
-            <p className="text-[22px] leading-[30px] font-bold font-pretendard">
+            <p className="font-bold font-pretendard text-[12px]/[1] md:text-[22px] md:leading-[30px]">
               Romans 8:28
             </p>
           </div>
           <Link
             href={"#"}
             onClick={() => alert("문의하기")}
-            className="w-[180px] px-10 py-[15px] rounded-full text-[16px] leading-[27px] font-semibold text-center font-pretendard bg-primary"
+            className="rounded-full font-semibold text-center font-pretendard bg-primary w-fit px-3 py-2 text-[12px]/[1.5] max-md:mt-auto md:w-[180px] md:px-10 md:py-[15px] md:text-[16px] md:leading-[27px]"
           >
             문의하기
           </Link>

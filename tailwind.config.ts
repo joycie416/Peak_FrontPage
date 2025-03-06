@@ -8,6 +8,12 @@ export default {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+    screens: {
+      xl: "1180px",
+      lg: "934px",
+      md: "650px",
+      sm: "375px",
+    },
     extend: {
       colors: {
         background: "hsl(var(--background))",
@@ -69,14 +75,18 @@ export default {
       boxShadow: {
         custom: "4px 12px 20px #F0ECF8",
       },
+      // screens: {
+      //   xl: "1180px",
+      //   md: "834px",
+      // },
       width: {
-        "main-width": "var(--main-width)",
+        "desktop-width": "var(--desktop-width)",
       },
       minWidth: {
-        "main-width": "var(--main-width)",
+        "desktop-width": "var(--desktop-width)",
       },
       maxWidth: {
-        "main-width": "var(--main-width)",
+        "desktop-width": "var(--desktop-width)",
       },
       fontFamily: {
         pretendard: ["var(--font-pretendard)"],

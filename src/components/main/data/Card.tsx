@@ -14,12 +14,12 @@ const figureMap: { [key: string]: string } = {
   Deal,
 };
 
-const fontClassName =
-  "text-[16px] leading-[150%] font-normal text-[#3B3B3B]/80 font-pretendard";
+const dataContentFontStyle =
+  "text-[#3B3B3B]/80 font-normal font-pretendard text-[14px]/[1.5] md:text-[16px]/[1.5]";
 
 const contentMap: { [key: string]: ReactNode } = {
   Search: (
-    <p className={fontClassName}>
+    <p className={dataContentFontStyle}>
       공공+대중견+TIPS선정사 등 우리회사에
       <br />딱 맞는 잠재고객사를 AI봇이
       <br />
@@ -27,14 +27,14 @@ const contentMap: { [key: string]: ReactNode } = {
     </p>
   ),
   Meeting: (
-    <p className={fontClassName}>
+    <p className={dataContentFontStyle}>
       Agent끼리 사전 거래 가능성을 조율하고
       <br />
       가능성을 예측합니다.
     </p>
   ),
   Deal: (
-    <p className={fontClassName}>
+    <p className={dataContentFontStyle}>
       51~99%수준의 가능성을 분석하여
       <br />
       의사 결정권자에게 의미있는
@@ -45,15 +45,19 @@ const contentMap: { [key: string]: ReactNode } = {
 
 const Card = ({ title }: CardProps) => {
   return (
-    <div className="w-[380px] h-[365px] p-[50px] rounded-[25px] bg-gray-70">
+    <div className="bg-gray-70 w-full h-[150px] p-[20px] flex flex-row-reverse justify-between rounded-[20px] md:block md:w-[380px] md:h-[365px] md:p-[50px] md:rounded-[25px]">
       <Image
         src={figureMap[title]}
         alt={title}
         width={103}
-        className="aspect-square mb-[50px]"
+        className="aspect-square w-[50px] mb-auto md:w-[103px] md:mb-[50px]"
       />
-      <p className="text-[28px] font-bold leading-[30px] mb-[15px]">{title}</p>
-      {contentMap[title]}
+      <div>
+        <p className="font-bold text-[28px] leading-[30px] mb-[15px]">
+          {title}
+        </p>
+        {contentMap[title]}
+      </div>
     </div>
   );
 };
