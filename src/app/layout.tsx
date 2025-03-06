@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Chakra_Petch } from "next/font/google";
 import "./globals.css";
 import Footer from "@/components/rootlayout/Footer";
+import Header from "@/components/rootlayout/Header";
 
 const chakra = Chakra_Petch({
   variable: "--font-chakra",
@@ -34,7 +35,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
-      <body className={`${chakra.className} antialiased`}>
+      <body className={`${chakra.className} antialiased relative`}>
+        <Header />
         {children}
         <Footer />
       </body>
