@@ -13,9 +13,10 @@ const manrope = Manrope({
 const links = {
   "/": "/",
   "/solution": "/solution",
-  "/dashboard": "https://www.peak.ceo/",
-  "/blog": "https://www.peak.ceo/",
-  "/contacts": "https://www.peak.ceo/",
+  "/dashboard": "https://peak-backoffice.vercel.app/",
+  "/blog":
+    "https://www.peak.ceo/is-artificial-intelligence-accessible-to-businesses-of-all-sizes/",
+  "/contacts": "https://www.peak.ceo/contacts/",
 };
 
 const HeaderLink = ({ to }: { to: keyof typeof links }) => {
