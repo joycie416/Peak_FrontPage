@@ -2,6 +2,7 @@ import { ReactNode } from "react";
 import Client from "@public/main/features/client.svg";
 import Agentic from "@public/main/features/agentic.svg";
 import Dashboard from "@public/main/features/dashboard.svg";
+import Route from "@public/main/features/route.svg";
 import Image from "next/image";
 
 type CardProps = { idx: string };
@@ -55,7 +56,7 @@ const featureContent: {
         동선을 찾는 맵 서비스입니다.
       </p>
     ),
-    src: Client,
+    src: Route,
   },
 };
 
