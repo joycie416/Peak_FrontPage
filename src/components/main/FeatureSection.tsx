@@ -2,8 +2,8 @@ import FeatureContent from "./feature/FeatureContent";
 
 const FeatureSection = () => {
   return (
-    <section id="feature-wrapper" className="min-w-main-width">
-      <div className="w-main-width mx-auto">
+    <section id="feature-wrapper" className="min-w-desktop-width">
+      <div className="w-desktop-width mx-auto">
         <FeatureContent />
       </div>
     </section>

@@ -6,13 +6,16 @@ import React from "react";
 
 const VisionSection = () => {
   return (
-    <section id="vision-wrapper" className="w-full min-w-main-width p-[50px]">
+    <section
+      id="vision-wrapper"
+      className="w-full min-w-desktop-width p-[50px]"
+    >
       <div
         className={
           "w-full py-[150px] rounded-[30px] bg-[url('/main/vision-background-crop.png')] bg-center bg-cover bg-no-repeat text-white overflow-hidden"
         }
       >
-        <div className="w-full max-w-main-width px-[50px] mx-auto flex justify-between items-center">
+        <div className="w-full max-w-desktop-width px-[50px] mx-auto flex justify-between items-center">
           <div className="shrink-0">
             <p className="text-[50px]/[0.7] tracking-[-1.25px] font-bold font-pretendard mb-[30px]">
               협력하여 선을 이루고자 합니다.
