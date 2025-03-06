@@ -17,10 +17,10 @@ const VisionSection = () => {
       >
         <div className="w-full xl:max-w-desktop-width mx-auto flex justify-between items-center">
           <div className="shrink-0">
-            <p className="tracking-[-1.25px] font-bold font-pretendard text-[20px]/[0.7] mb-[20px] md:text-[50px]/[0.7] md:mb-[30px]">
+            <p className="tracking-[-1.25px] font-bold font-pretendard text-[20px]/[0.7] mb-[15px] md:text-[50px]/[0.7] md:mb-[30px]">
               협력하여 선을 이루고자 합니다.
             </p>
-            <p className="tracking-[-1.25px] font-normal text-[16px]/[1] mb-[25px] text-[40px] md:leading-[35px] md:mb-[50px]">
+            <p className="tracking-[-1.25px] font-normal text-[16px]/[1] mb-[25px] md:text-[40px] md:leading-[35px] md:mb-[50px]">
               Works for the Good!
             </p>
             <p className="font-bold font-pretendard text-[12px]/[1] md:text-[22px] md:leading-[30px]">

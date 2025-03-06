@@ -21,7 +21,7 @@ const links = {
 
 const HeaderLink = ({ to }: { to: keyof typeof links }) => {
   const pathname = usePathname();
-  console.log(pathname);
+
   return (
     <Link
       href={links[to]}
