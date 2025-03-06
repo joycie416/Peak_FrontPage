@@ -36,8 +36,8 @@ const caseStudyContents: {
 
 const CaseStudyCard = ({ name }: { name: string }) => {
   return (
-    <div className="w-[580px] h-[584px] p-[30px] flex flex-col rounded-[30px] bg-gray-700">
-      <div className="w-full h-[313px] rounded-[30px] mb-[30px] overflow-hidden relative group">
+    <div className="w-full flex flex-col bg-gray-700 h-fit p-[15px] rounded-[15px] md:h-[584px] md:p-[30px] md:rounded-[30px]">
+      <div className="w-full overflow-hidden relative group h-[200px] rounded-[10px] mb-[15px] md:h-[313px] md:rounded-[30px] md:mb-[30px]">
         <Image
           src={caseStudyContents[name].src}
           alt={name}
@@ -62,17 +62,17 @@ const CaseStudyCard = ({ name }: { name: string }) => {
           <Tag text={tag} key={`${name}_tag_${tag}`} />
         ))}
       </div>
-      <p className="text-[30px] font-bold mb-[15px]">
+      <p className="font-bold text-[20px] mb-[10px] md:text-[30px] md:mb-[15px]">
         {caseStudyContents[name].name}
       </p>
       <ul className="list-disc list-inside font-normal pl-[5px] case_study_marker">
-        <li className="text-[18px] leading-[32.4px]">
+        <li className="text-[14px] leading-[24px] md:text-[18px] md:leading-[32.4px]">
           Challenge: {caseStudyContents[name].challenge}
         </li>
-        <li className="text-[18px] leading-[32.4px]">
+        <li className="text-[14px] leading-[24px] md:text-[18px] md:leading-[32.4px]">
           Solution: {caseStudyContents[name].solution}
         </li>
-        <li className="text-[18px] leading-[32.4px]">
+        <li className="text-[14px] leading-[24px] md:text-[18px] md:leading-[32.4px]">
           Results: {caseStudyContents[name].results}
         </li>
       </ul>

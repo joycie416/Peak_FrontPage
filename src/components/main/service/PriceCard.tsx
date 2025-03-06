@@ -46,29 +46,36 @@ const serviceContents: {
 
 const PriceCard = ({ name }: { name: string }) => {
   return (
-    <div className="w-full h-[335px] flex rounded-[30px] text-white overflow-hidden group">
-      <div className="w-1/2 px-[50px] py-[60px] bg-gray-800 relative transition-colors group-hover:bg-primary">
-        <p className="text-[40px]/[1] font-bold font-chakra mb-[10px]">
+    <div className="w-full flex text-white overflow-hidden group flex-col h-[335px] rounded-[15px] md:flex-row md:h-[335px] md:rounded-[30px]">
+      <div className="bg-gray-800 relative transition-colors w-full h-1/2 p-[20px] md:w-1/2 md:h-full md:px-[50px] md:py-[60px] group-hover:bg-primary">
+        <p className="font-bold font-chakra text-[30px]/[1] mb-[4px] md:text-[40px]/[1] md:mb-[10px]">
           {name}
         </p>
-        <p className="text-[16px]/[1.5] tracking-[-0.48px]">
+        <p className="tracking-[-0.48px] text-[14px]/[1.5] md:text-[16px]/[1.5]">
           {serviceContents[name].tag}
         </p>
         <Image
           src={serviceContents[name].img}
           alt={`${name}_img`}
-          className="absolute bottom-0 right-0"
+          className="w-[140px] aspect-[378/183] absolute bottom-[20px] right-[20px] drop-shadow-[0_2px_10px_rgba(0,0,0,0.6)] md:w-[378px] md:bottom-[30px] md:right-[30px] md:drop-shadow-[0_4px_30px_rgba(0,0,0,0.6)]"
         />
       </div>
       <div
-        // onMouseOver={() => alert("마우스 오버")}
-        className={cn("w-1/2 pl-[50px] pt-[55px] bg-gray-700", {
-          "pt-[70px]": serviceContents[name].contents.length === 4,
-        })}
+        className={cn(
+          "bg-gray-700 w-full h-1/2 pl-[20px] pt-[20px] md:w-1/2 md:h-full md:pl-[50px] md:pt-[55px]",
+          {
+            "md:pt-[70px]": serviceContents[name].contents.length === 4,
+          }
+        )}
       >
         <ul className="list-disc list-inside">
           {serviceContents[name].contents.map((content) => (
-            <li key={content} className="text-[25px]/[2]">
+            <li
+              key={content}
+              className={cn("text-[16px]/[1.6] md:text-[25px]/[2]", {
+                "text-[16px]/[2]": serviceContents[name].contents.length === 4,
+              })}
+            >
               {content}
             </li>
           ))}

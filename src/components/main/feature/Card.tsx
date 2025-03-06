@@ -4,10 +4,12 @@ import Agentic from "@public/main/features/agentic.svg";
 import Dashboard from "@public/main/features/dashboard.svg";
 import Route from "@public/main/features/route.svg";
 import Image from "next/image";
+import { cn } from "@/lib/utils";
 
 type CardProps = { idx: string };
 
-const featureContentClassName = "text-[20px]/[1.5] text-[#3B3B3B] font-normal";
+const featureContentClassName =
+  "text-[#3B3B3B] font-normal text-[16px]/[1.5] md:text-[20px]/[1.5]";
 
 const featureContent: {
   [key: string]: { title: string; content: ReactNode; src: string };
@@ -62,21 +64,22 @@ const featureContent: {
 
 const Card = ({ idx }: CardProps) => {
   return (
-    <div className="h-[400px] flex even:flex-row-reverse font-pretendard">
-      <div className="w-[580px] h-full rounded-[30px] bg-gray-100 overflow-hidden relative">
+    <div className="flex flex-col font-pretendard md:h-[400px] md:flex-row md:even:flex-row-reverse">
+      <div className="bg-gray-100 overflow-hidden relative w-full h-[240px] rounded-[15px] md:w-[580px] md:h-full md:rounded-[30px]">
         <Image
           src={featureContent[idx].src}
           alt={featureContent[idx].title}
-          className={`absolute bottom-1 ${
-            Number(idx) % 2 === 0 ? "right-20" : "left-20"
-          }`}
+          className={cn("absolute bottom-1 h-[200px] md:h-[337px]", {
+            "left-12 md:left-20": Number(idx) % 2 !== 0,
+            "right-12 md:right-20": Number(idx) % 2 === 0,
+          })}
         />
       </div>
-      <div className="flex-grow h-full pl-[150px] pt-[91px]">
-        <p className="text-[14px] font-semibold text-primary mb-[5px]">
+      <div className="flex-grow h-full pl-[15px] pt-[20px] md:pl-[150px] md:pt-[91px]">
+        <p className="text-primary font-semibold text-[10px] mb-[5px] md:text-[14px] md:mb-[5px]">
           STEP {idx}
         </p>
-        <p className="text-[35px]/[1.5] font-bold mb-5">
+        <p className="font-bold text-[20px]/[1.5] mb-3 md:text-[35px]/[1.5] md:mb-5">
           {featureContent[idx].title}
         </p>
         {featureContent[idx].content}
