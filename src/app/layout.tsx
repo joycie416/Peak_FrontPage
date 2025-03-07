@@ -3,6 +3,8 @@ import { Chakra_Petch } from "next/font/google";
 import "./globals.css";
 import Footer from "@/components/rootlayout/Footer";
 import Header from "@/components/rootlayout/Header";
+import { SidebarProvider } from "@/components/ui/sidebar";
+import { AppSidebar } from "@/components/rootlayout/sidebar/AppSidebar";
 
 const chakra = Chakra_Petch({
   variable: "--font-chakra",
@@ -36,9 +38,12 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body className={`${chakra.className} antialiased relative`}>
-        <Header />
-        {children}
-        <Footer />
+        <SidebarProvider className="flex-col">
+          <AppSidebar />
+          <Header />
+          {children}
+          <Footer />
+        </SidebarProvider>
       </body>
     </html>
   );

@@ -2,9 +2,10 @@
 
 import { cn } from "@/lib/utils";
 import { PropsWithChildren, useEffect, useState } from "react";
+import { useSidebar } from "../ui/sidebar";
 
 const HeaderBackground = ({ children }: PropsWithChildren) => {
-  // 스크롤 시 라운딩
+  // 스크롤 시 라운딩 제거
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
@@ -20,11 +21,23 @@ const HeaderBackground = ({ children }: PropsWithChildren) => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // 모바일 사이드바 설정
+  const { isMobile, setOpenMobile } = useSidebar();
+
+  useEffect(() => {
+    if (!isMobile) {
+      setOpenMobile(false);
+    }
+  }, [isMobile]);
+
   return (
     <header
-      className={cn("w-full h-20 px-[30px] fixed top-0 z-[10] transition-all", {
-        "px-0": isScrolled,
-      })}
+      className={cn(
+        "w-full h-20 px-[30px] fixed top-0 z-[10] transition-all max-md:hidden",
+        {
+          "px-0": isScrolled,
+        }
+      )}
     >
       <div
         id="header_background"
