@@ -5,7 +5,7 @@ import HeaderLink from "./HeaderLink";
 import Link from "next/link";
 import { Manrope } from "next/font/google";
 import HeaderBackground from "./HeaderBackground";
-import { SidebarProvider, SidebarTrigger } from "../ui/sidebar";
+import { SidebarTrigger } from "../ui/sidebar";
 
 const manrope = Manrope({
   variable: "--font-manrope",
