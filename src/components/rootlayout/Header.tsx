@@ -16,7 +16,6 @@ const Header = () => {
   return (
     <>
       {/* 데스크탑 헤더 */}
-      {/* <header className="w-full h-20 px-[30px] fixed top-0 z-[10]"> */}
       <HeaderBackground>
         <div className="w-full h-full grid grid-cols-[1fr_auto_1fr] items-center">
           <div className="h-fit my-auto mr-auto space-x-[17px]">
@@ -37,11 +36,10 @@ const Header = () => {
           </div>
         </div>
       </HeaderBackground>
-      {/* </header> */}
       {/* 모바일 헤더 */}
-      <div
+      <header
         className={
-          "w-full h-10 px-[20px] py-1 fixed top-0 z-[10] flex justify-between items-center bg-white md:hidden"
+          "w-full h-10 px-[20px] py-1 fixed top-0 z-[10] flex justify-between items-center bg-white lg:hidden"
         }
       >
         {" "}
@@ -51,7 +49,7 @@ const Header = () => {
         </Link>
         <SidebarTrigger />
         {/* </SidebarProvider> */}
-      </div>
+      </header>
     </>
   );
 };

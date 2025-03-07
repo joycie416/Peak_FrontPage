@@ -14,9 +14,7 @@ const GoalSection = () => {
         // fill
         className="absolute top-0 bottom-0 right-0 pointer-events-none" // 모바일에서는 안보이게
       />
-      {/* <div className="w-full xl:w-desktop-width mx-auto"> */}
       <GoalContent />
-      {/* </div> */}
     </section>
   );
 };

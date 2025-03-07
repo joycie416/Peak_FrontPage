@@ -33,7 +33,7 @@ const HeaderBackground = ({ children }: PropsWithChildren) => {
   return (
     <header
       className={cn(
-        "w-full h-20 px-[30px] fixed top-0 z-[10] transition-all max-md:hidden",
+        "w-full h-20 px-[30px] fixed top-0 z-[10] transition-all max-lg:hidden",
         {
           "px-0": isScrolled,
         }

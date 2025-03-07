@@ -10,7 +10,7 @@ import SidebarLinkItem from "./SidebarLinkItem";
 
 export function AppSidebar() {
   return (
-    <Sidebar side="right" className="md:hidden">
+    <Sidebar side="right" className="fixed top-0 z-[10] lg:hidden">
       <SidebarContent className="p-5">
         <SidebarHeader className="flex flex-row justify-end">
           <CloseSidebarButton />
