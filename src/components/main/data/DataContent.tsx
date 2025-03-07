@@ -45,7 +45,7 @@ const DataContent = () => {
           </div>
         </div>
         <Logos />
-        <div className="grid grid-rows-[repeat(3,_1fr)] gap-5 mt-[20px] md:mt-[113px] md:grid-cols-[repeat(3,_1fr)] md:grid-rows-1 items-center">
+        <div className="grid grid-rows-[repeat(3,_1fr)] gap-5 mt-[20px] md:mt-[113px] md:grid-cols-[repeat(3,_1fr)] md:grid-rows-1  lg:min-h-[365px]">
           {["Search", "Meeting", "Deal"].map((title) => (
             <Card title={title} key={title} />
           ))}
