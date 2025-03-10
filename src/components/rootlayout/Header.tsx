@@ -6,6 +6,7 @@ import Link from "next/link";
 import { Manrope } from "next/font/google";
 import HeaderBackground from "./HeaderBackground";
 import { SidebarTrigger } from "../ui/sidebar";
+import HeaderWrapper from "./HeaderWrapper";
 
 const manrope = Manrope({
   variable: "--font-manrope",
@@ -14,10 +15,10 @@ const manrope = Manrope({
 
 const Header = () => {
   return (
-    <>
+    <HeaderWrapper>
       {/* 데스크탑 헤더 */}
       <HeaderBackground>
-        <div className="w-full h-full grid grid-cols-[1fr_auto_1fr] items-center">
+        <nav className="w-full h-full grid grid-cols-[1fr_auto_1fr] items-center">
           <div className="h-fit my-auto mr-auto space-x-[17px]">
             <HeaderLink to="/" />
             <HeaderLink to="/solution" />
@@ -34,7 +35,7 @@ const Header = () => {
               가입/로그인
             </Link>
           </div>
-        </div>
+        </nav>
       </HeaderBackground>
       {/* 모바일 헤더 */}
       <header
@@ -42,15 +43,12 @@ const Header = () => {
           "w-full h-10 px-[20px] py-1 fixed top-0 z-[10] flex justify-between items-center bg-white lg:hidden"
         }
       >
-        {" "}
-        {/* <SidebarProvider> */}
         <Link href={"/"}>
           <Image src={PEAK} alt="PEAK" height={30} className="" />
         </Link>
         <SidebarTrigger />
-        {/* </SidebarProvider> */}
       </header>
-    </>
+    </HeaderWrapper>
   );
 };
 
