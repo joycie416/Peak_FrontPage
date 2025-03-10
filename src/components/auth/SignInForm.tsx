@@ -6,7 +6,6 @@ import Google from "@public/google-logo.svg";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import Link from "next/link";
-import { useRef } from "react";
 import { useRouter } from "next/navigation";
 
 const SignInForm = () => {
@@ -68,7 +67,7 @@ const SignInForm = () => {
       </Button>
       <hr className="w-full bg-gray-70" />
       <p>
-        Don't have an account?{" "}
+        Don&apos;t have an account?{" "}
         <Link href={"/signup"} className="underline text-primary">
           Sign up here
         </Link>

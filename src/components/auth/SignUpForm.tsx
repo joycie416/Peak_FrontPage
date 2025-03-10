@@ -7,7 +7,6 @@ import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import Link from "next/link";
 import { useRef } from "react";
-import { cn } from "@/lib/utils";
 import { useRouter } from "next/navigation";
 
 const SignUpForm = () => {
