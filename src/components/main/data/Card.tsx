@@ -15,7 +15,7 @@ const figureMap: { [key: string]: string } = {
 };
 
 const dataContentFontStyle =
-  "text-[#3B3B3B]/80 font-normal font-pretendard text-[14px]/[1.5] md:text-[16px]/[1.5]";
+  "text-[#3B3B3B]/80 font-normal font-pretendard text-[14px]/[1.5] md:text-[14px]/[1.5] lg:text-[16px]/[1.5]";
 
 const contentMap: { [key: string]: ReactNode } = {
   Search: (
@@ -45,15 +45,15 @@ const contentMap: { [key: string]: ReactNode } = {
 
 const Card = ({ title }: CardProps) => {
   return (
-    <div className="bg-gray-70 w-full h-[150px] p-[20px] flex flex-row-reverse justify-between rounded-[20px] md:block md:w-[380px] md:h-[365px] md:p-[50px] md:rounded-[25px]">
+    <div className="bg-gray-70 w-full h-full p-[20px] flex flex-row-reverse justify-between rounded-[20px] md:block md:max-w-[380px] md: md:p-[30px] md:rounded-[25px] md:max-w-[380px] lg:p-[50px] lg:rounded-[25px]">
       <Image
         src={figureMap[title]}
         alt={title}
         width={103}
-        className="aspect-square w-[50px] mb-auto md:w-[103px] md:mb-[50px]"
+        className="aspect-square w-[50px] mb-auto md:w-[80px] md:mb-[30px] lg:w-[103px] lg:mb-[50px]"
       />
       <div>
-        <p className="font-bold text-[28px] leading-[30px] mb-[15px]">
+        <p className="font-bold text-[28px] leading-[30px] mb-[15px] md:text-[24px] md:leading-[28px] md:mb-[10px] lg:text-[28px] lg:leading-[30px] lg:mb-[15px]">
           {title}
         </p>
         {contentMap[title]}

@@ -1,5 +1,6 @@
 "use client";
 
+import { LINKS } from "@/constants/header";
 import { cn } from "@/lib/utils";
 import { Manrope } from "next/font/google";
 import Link from "next/link";
@@ -10,21 +11,12 @@ const manrope = Manrope({
   subsets: ["latin", "latin-ext"],
 });
 
-const links = {
-  "/": "/",
-  "/solution": "/solution",
-  "/dashboard": "https://peak-backoffice.vercel.app/",
-  "/blog":
-    "https://www.peak.ceo/is-artificial-intelligence-accessible-to-businesses-of-all-sizes/",
-  "/contacts": "https://www.peak.ceo/contacts/",
-};
-
-const HeaderLink = ({ to }: { to: keyof typeof links }) => {
+const HeaderLink = ({ to }: { to: keyof typeof LINKS }) => {
   const pathname = usePathname();
 
   return (
     <Link
-      href={links[to]}
+      href={LINKS[to]}
       className={cn(
         `px-[15px] py-[10px] ${manrope.className} text-[#333333] text-[14px] font-bold rounded-full`,
         {
