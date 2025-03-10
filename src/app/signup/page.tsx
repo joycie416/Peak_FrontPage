@@ -1,7 +1,13 @@
-import React from "react";
+import LeftHalf from "@/components/auth/LeftHalf";
+import SignUpForm from "@/components/auth/SignUpForm";
 
 const SignUpPage = () => {
-  return <div>SignUpPage</div>;
+  return (
+    <div className="w-screen h-screen flex items-center bg-gray-50">
+      <LeftHalf />
+      <SignUpForm />
+    </div>
+  );
 };
 
 export default SignUpPage;

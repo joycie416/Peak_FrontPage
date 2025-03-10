@@ -1,6 +1,5 @@
 import SignInForm from "@/components/auth/SignInForm";
-import React from "react";
-import LeftHalf from "./LeftHalf";
+import LeftHalf from "@/components/auth/LeftHalf";
 
 const SignInPage = () => {
   return (
