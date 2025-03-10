@@ -45,7 +45,7 @@ const contentMap: { [key: string]: ReactNode } = {
 
 const Card = ({ title }: CardProps) => {
   return (
-    <div className="bg-gray-70 w-full h-full p-[20px] flex flex-row-reverse justify-between rounded-[20px] md:block md:max-w-[380px] md: md:p-[30px] md:rounded-[25px] md:max-w-[380px] lg:p-[50px] lg:rounded-[25px]">
+    <div className="bg-gray-50 w-full h-full p-[20px] flex flex-row-reverse justify-between rounded-[20px] md:block md:max-w-[380px] md: md:p-[30px] md:rounded-[25px] md:max-w-[380px] lg:p-[50px] lg:rounded-[25px]">
       <Image
         src={figureMap[title]}
         alt={title}

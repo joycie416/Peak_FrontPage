@@ -31,7 +31,7 @@ const HeaderBackground = ({ children }: PropsWithChildren) => {
   }, [isMobile]);
 
   return (
-    <header
+    <div
       className={cn(
         "w-full h-20 px-[30px] fixed top-0 z-[10] transition-all max-lg:hidden",
         {
@@ -50,7 +50,7 @@ const HeaderBackground = ({ children }: PropsWithChildren) => {
       >
         {children}
       </div>
-    </header>
+    </div>
   );
 };
 

@@ -1,13 +1,13 @@
-import SignInForm from "@/components/auth/SignInForm";
 import LeftHalf from "@/components/auth/LeftHalf";
+import SignUpForm from "@/components/auth/SignUpForm";
 
-const SignInPage = () => {
+const SignUpPage = () => {
   return (
     <div className="w-screen h-screen flex items-center bg-gray-50">
       <LeftHalf />
-      <SignInForm />
+      <SignUpForm />
     </div>
   );
 };
 
-export default SignInPage;
+export default SignUpPage;

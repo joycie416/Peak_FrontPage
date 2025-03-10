@@ -65,7 +65,7 @@ const featureContent: {
 const Card = ({ idx }: CardProps) => {
   return (
     <div className="flex flex-col font-pretendard md:h-[400px] md:flex-row md:even:flex-row-reverse">
-      <div className="bg-gray-100 overflow-hidden relative w-full h-[240px] rounded-[15px] md:w-[580px] md:h-full md:rounded-[30px]">
+      <div className="bg-gray-50 overflow-hidden relative w-full h-[240px] rounded-[15px] md:w-[580px] md:h-full md:rounded-[30px]">
         <Image
           src={featureContent[idx].src}
           alt={featureContent[idx].title}
