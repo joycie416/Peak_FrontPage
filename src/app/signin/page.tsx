@@ -4,7 +4,7 @@ import LeftHalf from "./LeftHalf";
 
 const SignInPage = () => {
   return (
-    <div className="w-screen h-screen flex items-center bg-primary/80">
+    <div className="w-screen h-screen flex items-center bg-gray-50">
       <LeftHalf />
       <SignInForm />
     </div>
