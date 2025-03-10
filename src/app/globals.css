@@ -126,9 +126,10 @@
     background-position: center;
     background-repeat: no-repeat;
   }
+  .transparent_to_black {
+    background: linear-gradient(to bottom, transparent 0%, black 80%);
+  }
 }
-
-
 
 @layer base {
   * {

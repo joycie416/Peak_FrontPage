@@ -23,7 +23,7 @@ const CompanyProfileForm = ({ handleNode }: CompanyProfileFormProps) => {
   // 회사명
   const nameRef = useRef<HTMLInputElement>(null);
 
-  const placeholder = "회사소개서 pdf를 업로드해주세요.";
+  const placeholder = "회사소개서 pdf";
   // 파일 업로드 클릭 시
   const handleFileUpload = () => {
     if (fileInputRef.current) fileInputRef.current.click();
@@ -67,24 +67,25 @@ const CompanyProfileForm = ({ handleNode }: CompanyProfileFormProps) => {
     };
 
   return (
+    // <div className="w-full h-full flex items-end absolute top-0 transparent_to_black">
     <>
       {!submitted && (
         <form
           onSubmit={handleSubmit}
-          className="w-fit flex gap-2 absolute bottom-[10%] left-[30px]"
+          className="w-full xl:max-w-desktop-width mx-auto absolute bottom-0 pt-5 pb-[30px] transparent_to_black gap-2 grid grid-cols-[4fr_1fr] grid-rows-[1fr_1fr] px-5 md:flex md:px-5 lg:px-[30px]"
         >
           <Input
             type="text"
-            placeholder="회사명을 입력해주세요."
+            placeholder="회사명"
             ref={nameRef}
-            className="w-[300px] text-white"
+            className="w-full bg-white font-medium col-start-1 col-end-2 row-start-1 row-end-2 h-8 text-[14px] md:h-10 md:text-[16px]"
           />
-          <div className="w-[300px] flex shrink-0 justify-between align-center h-10 border border-primary rounded-sm bg-transparent text-base transition-colors">
+          <div className="w-full flex justify-between align-center bg-white border border-primary rounded-sm bg-transparent row-start-2 row-end-3 h-8 text-[14px] md:h-10 md:flex md:text-[16px]">
             <Button
               onClick={() => handleFileUpload()}
               type="button"
               variant="ghost"
-              className="px-3 py-1 flex-grow font-medium text-white text-left overflow-hidden"
+              className="h-full pl-3 py-1 flex-grow font-medium text-left overflow-hidden"
             >
               <input
                 type="file"
@@ -95,7 +96,7 @@ const CompanyProfileForm = ({ handleNode }: CompanyProfileFormProps) => {
               />
               <p
                 className={cn(
-                  "w-full break-all overflow-hidden whitespace-nowrap text-ellipsis",
+                  "w-full break-all overflow-hidden whitespace-nowrap text-ellipsis text-[14px] md:text-[16px]",
                   {
                     "text-muted-foreground": !fileName,
                   }
@@ -112,7 +113,12 @@ const CompanyProfileForm = ({ handleNode }: CompanyProfileFormProps) => {
               <X color="gray" />
             </button>
           </div>
-          <Button variant={"default"}>추가하기</Button>
+          <Button
+            variant={"default"}
+            className="h-full col-start-2 col-end-3 row-start-2 row-end-3 font-medium h-8 text-[14px] md:h-10 md:text-[16px]"
+          >
+            추가하기
+          </Button>
         </form>
       )}
       {submitted && (
@@ -130,6 +136,7 @@ const CompanyProfileForm = ({ handleNode }: CompanyProfileFormProps) => {
         </div>
       )}
     </>
+    // </div>
   );
 };
 
