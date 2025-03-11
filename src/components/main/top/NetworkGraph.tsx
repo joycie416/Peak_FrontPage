@@ -67,7 +67,6 @@ const NetworkGraph = () => {
   // 그래프뷰 폭 조절
   const [{ width, height }, setSize] = useState<Size>(() => {
     if (typeof window === "undefined") return { width: 1920, height: 1080 };
-    console.log({ width: window.innerWidth, height: window.innerHeight });
     return { width: window.innerWidth, height: window.innerHeight };
   });
 
@@ -77,11 +76,7 @@ const NetworkGraph = () => {
     const handleResize = () => {
       const width = window.innerWidth;
       const height = window.innerHeight;
-      setSize(() => {
-        console.log("모바일인가?", isMobile);
-
-        return { width, height };
-      });
+      setSize(() => ({ width, height }));
       createGraph({ width, height });
     };
 
@@ -172,7 +167,6 @@ const NetworkGraph = () => {
             homepage = `https://www.${homepage}`;
           }
         }
-        console.log(homepage);
         window.open(homepage, "_blank");
       });
 
@@ -336,7 +330,6 @@ const NetworkGraph = () => {
 
           return updatedNodes;
         });
-        console.log("노드를 추가했습니다.");
       }
     }
     if (mode === "reset") {
