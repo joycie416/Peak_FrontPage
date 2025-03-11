@@ -1,36 +1,32 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# [PEAK](https://peak-main-page.vercel.app/)
 
-## Getting Started
+### 더선한 주식회사 인턴 업무 일지
 
-First, run the development server:
+- 1주차 : 서비스 이해
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+  - 레퍼런스 사이트 분석, LLM과 Agent 비교, A2A agent 아티클 정리
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- 2주차 : 기업 정보 크롤링
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+  - 파이썬 Selenium 사용
+  - 넥스트 유니콘, 사람인 기업 정보 크롤링
+  - 시작 페이지 설정 및 특정 파일을 불러와 재사용할 수 있도록 함
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- 3주차 : 그래프뷰 작업
 
-## Learn More
+  - d3 라이브러리 사용
+  - 뷰 생성시 깜빡임이 있어 UX 개선을 위해 시작 애니메이션 추가
+  - 고정폭으로 보여주던 뷰 크기를 브라우저 크기에 맞도록 변경 가능하게 함
+  - 특정 노드를 항상 뷰의 가운데로 고정
+  - 그래프뷰에 노드 추가, 삭제 기능 구현
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- 4주차 : 메인 페이지 및 회원가입/로그인 페이지 구현
+  - Shadcn UI 라이브러리, Tailwindcss 사용
+  - 메인 페이지
+    - 디자인 시안 적용
+    - 모바일 반응형 디자인 적용
+    - 모바일 사이드바 구현
+    - 페이지 로딩 속도 개선을 위해 최대한 서버 컴포넌트로 구현
+    - 그래프뷰 Top에 연결
+  - 회원가입/로그인 페이지
+    - 아폴로, 딥세일즈 참고해 UI/UX 개선
