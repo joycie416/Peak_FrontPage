@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import plugin from "tailwindcss/plugin";
 
 export default {
   darkMode: ["class"],
@@ -76,6 +77,17 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        "peak-50": "#f8f2ff",
+        "peak-100": "#efe0ff",
+        "peak-200": "#e3caff",
+        "peak-300": "#cfa7fa",
+        "peak-400": "#b77df4",
+        "peak-500": "#a24bff",
+        "peak-600": "#841af6",
+        "peak-700": "#690fc9",
+        "peak-800": "#4d039d",
+        "peak-900": "#420c7c",
+        "peak-950": "#340b60",
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -116,15 +128,34 @@ export default {
           "0%": {
             opacity: "1",
           },
-          "100%": {
+          "90%": {
             opacity: "0",
           },
         },
       },
       animation: {
-        top_fadeout: "top_fadeout 1.5s ease-in forwards",
+        top_fadeout: "top_fadeout 3s ease-in forwards",
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [
+    plugin(function ({ addBase }) {
+      addBase({
+        ":root": {
+          "--peak-50": "#f8f2ff",
+          "--peak-100": "#efe0ff",
+          "--peak-200": "#e3caff",
+          "--peak-300": "#cfa7fa",
+          "--peak-400": "#b77df4",
+          "--peak-500": "#a24bff",
+          "--peak-600": "#841af6",
+          "--peak-700": "#690fc9",
+          "--peak-800": "#4d039d",
+          "--peak-900": "#420c7c",
+          "--peak-950": "#340b60",
+        },
+      });
+    }),
+    require("tailwindcss-animate"),
+  ],
 } satisfies Config;

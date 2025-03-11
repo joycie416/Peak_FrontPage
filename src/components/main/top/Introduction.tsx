@@ -19,14 +19,16 @@ const Introduction = () => {
   return (
     <div
       className={cn(
-        "w-full h-full flex justify-center items-center absolute top-0 bg-black",
+        "w-screen h-screen flex justify-center items-center absolute top-0 bg-black",
         {
           "animate-top_fadeout": !isHidden,
           hidden: isHidden,
         }
       )}
     >
-      <h1 className={"text-[30px] text-white self-center "}>Sales Agent AI</h1>
+      <h1 className="self-center text-white text-[30px] lg:text-[40px] xl:text-[50px]">
+        Sales Agent AI
+      </h1>
     </div>
   );
 };

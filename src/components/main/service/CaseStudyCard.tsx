@@ -13,6 +13,7 @@ const caseStudyContents: {
     challenge: string;
     solution: string;
     results: string;
+    detailLink: string;
     src: string;
   };
 } = {
@@ -22,6 +23,7 @@ const caseStudyContents: {
     challenge: "[중대재해처벌법 관련 웨비나]",
     solution: "온라인 세미나 (신청자 줌링크 초대)",
     results: "사전 신청 381명 / 실참여 : 120명",
+    detailLink: "https://www.peak.ceo/case-studies/urban-traffic-management/",
     src: Doaz,
   },
   FluentT: {
@@ -30,6 +32,8 @@ const caseStudyContents: {
     challenge: "[AGI Webinar] '인공지능으로 가는 길'",
     solution: "온라인 세미나",
     results: "사전 신청 509명 / 실참여 : 238명",
+    detailLink:
+      "https://www.peak.ceo/case-studies/customer-service-enhancement/",
     src: FluentT,
   },
 };
@@ -45,17 +49,15 @@ const CaseStudyCard = ({ name }: { name: string }) => {
             "scale-[100.3%]": name === "Doaz", // 이미지 오른쪽 하얀색 선 안보이게 하기 위함
           })}
         />
-        {name === "Doaz" && (
-          <div className="w-full h-full bg-black/60 absolute top-0 hidden group-hover:flex">
-            <Link
-              href={"https://www.peak.ceo/"}
-              target="_blank"
-              className="w-fit h-fit px-10 py-[15px] m-auto bg-primary rounded-full text-[16px] leading-[27px] font-semibold font-pretendard"
-            >
-              더 보러가기
-            </Link>
-          </div>
-        )}
+        <div className="w-full h-full bg-black/60 absolute top-0 hidden group-hover:flex">
+          <Link
+            href={caseStudyContents[name].detailLink}
+            target="_blank"
+            className="w-fit h-fit px-10 py-[15px] m-auto bg-primary rounded-full text-[16px] leading-[27px] font-semibold font-pretendard"
+          >
+            더 보러가기
+          </Link>
+        </div>
       </div>
       <div className="flex gap-[10px] mb-[10px]">
         {caseStudyContents[name].tags.map((tag) => (
