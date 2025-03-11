@@ -128,7 +128,7 @@ const NetworkGraph = () => {
     // 노드 크기, 사이 여백
     const nodeSize = 10;
     const nodeSpacing = isMobile ? 10 : 12;
-    const linkSpacing = isMobile ? 50 : 75;
+    const linkSpacing = isMobile ? 70 : 120;
     const chargeStrength = isMobile ? -70 : -250;
 
     // svg 요소 설정
@@ -336,23 +336,28 @@ const NetworkGraph = () => {
     createGraph({ width, height });
   }, [nodes, width, height]);
 
-  const handleNode = (mode: "new" | "reset", company?: string) => {
+  const handleNode = (
+    mode: "new" | "reset",
+    company?: string,
+    executive?: string,
+    email?: string
+  ) => {
     if (mode === "new") {
       if (nodes.length >= 302) {
         alert("기존 데이터를 삭제해주세요.");
         return;
       }
 
-      if (company) {
+      if (company && executive && email) {
         const newNode: Node = {
           id: 302,
           company,
-          key_executive: "",
+          key_executive: executive,
           industry: "",
           address: "",
           homepage: "",
-          email: "정보 없음",
-          phone_number: "",
+          email,
+          phone_number: "정보 없음",
           sales: "정보 없음",
           total_funding: "정보 없음",
           isNew: true,

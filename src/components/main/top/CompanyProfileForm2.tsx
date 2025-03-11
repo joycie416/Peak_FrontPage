@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
-import { ArrowLeft, Plus, X } from "lucide-react";
+import { X } from "lucide-react";
 
 type CompanyProfileFormProps = {
   handleNode: (
@@ -81,78 +81,64 @@ const CompanyProfileForm = ({ handleNode }: CompanyProfileFormProps) => {
     alert("회사명, 이메일과 파일을 모두 입력해주세요.");
   };
 
-  const handleUndo = () => {
-    if (companyRef.current) companyRef.current.value = "";
-    if (executiveRef.current) executiveRef.current.value = "";
-    if (emailRef.current) emailRef.current.value = "";
-    setOpen(false);
-    handleFileDelete();
-  };
-
-  const handleReset = () =>
+  const onResetClick = () =>
     // e?: React.MouseEvent<HTMLButtonElement, MouseEvent>
     {
       handleFileDelete();
       setSubitted(false);
       handleNode("reset");
       if (companyRef.current) companyRef.current.value = "";
-      if (executiveRef.current) executiveRef.current.value = "";
       if (emailRef.current) emailRef.current.value = "";
     };
 
-  const handleOpenFormClick = () => {
+  const handleButtonClick = () => {
     setOpen(true);
   };
 
   return (
-    <div className="w-full h-fit flex items-end absolute bottom-0 right-0 left-0 font-pretendard transparent_to_black_to_b">
-      <div className="w-full xl:max-w-desktop-width mx-auto">
+    <div className="w-full h-fit flex items-end absolute bottom-0 right-0 left-0 transparent_to_black_to_b">
+      <>
         {!open && (
-          <Button
-            className="rounded-full font-medium mt-5 mb-[30px] ml-5 px-5 h-8 text-[14px] md:h-10 md:text-[16px] lg:px-[30px] xl:ml-0"
-            onClick={() => handleOpenFormClick()}
-          >
-            회사 정보 제출하기
-          </Button>
+          <div className="w-full xl:max-w-desktop-width mx-auto pt-5 pb-[30px] gap-2 px-5 xl:px-0">
+            <Button
+              onClick={() => handleButtonClick()}
+              className="rounded-full"
+            >
+              회사 정보 제출하기
+            </Button>
+          </div>
         )}
         {open && !submitted && (
-          <form
-            onSubmit={handleSubmit}
-            className="w-full px-5 pt-5 pb-[30px] flex gap-2 items-end lg:px-[30px] xl:px-0"
-          >
-            <div className="w-[80%] lg:max-w-[300px] flex flex-col gap-2">
-              <Button
-                variant={"ghost"}
-                type="button"
-                onClick={() => handleUndo()}
-                className="w-8 h-3 aspect-square p-0"
-              >
-                <ArrowLeft color="white" />
-              </Button>
+          <div className="w-full xl:max-w-desktop-width mx-auto h-fit flex items-start">
+            <form
+              onSubmit={handleSubmit}
+              // className="w-full xl:max-w-desktop-width mx-auto pt-5 pb-[30px] gap-2 grid grid-cols-[4fr_1fr] grid-rows-[1fr_1fr_1fr_1fr] px-5 md:grid-cols-[3fr_2fr] lg:flex xl:px-0"
+              className="w-full md:max-w-[400px] pt-5 pb-[30px] gap-2 grid grid-cols-[4fr_1fr] grid-rows-[1fr_1fr_1fr_1fr] px-5 xl:px-0"
+            >
               <Input
                 type="text"
                 placeholder="회사명"
                 ref={companyRef}
-                className="bg-white rounded-sm h-8 text-[14px] md:rounded-md md:h-10 md:text-[16px]"
+                className="w-full bg-white font-medium col-start-1 col-end-2 row-start-1 row-end-2 h-8 text-[14px] md:h-10 md:text-[16px]"
               />
               <Input
                 type="text"
                 placeholder="대표자"
                 ref={executiveRef}
-                className="bg-white rounded-sm h-8 text-[14px] md:rounded-md md:h-10 md:text-[16px]"
+                className="w-full bg-white font-medium col-start-1 col-end-2 row-start-2 row-end-3 h-8 text-[14px] md:h-10 md:text-[16px]"
               />
               <Input
                 type="email"
                 placeholder="대표 이메일"
                 ref={emailRef}
-                className="bg-white rounded-sm h-8 text-[14px] md:rounded-md md:h-10 md:text-[16px]"
+                className="w-full bg-white font-medium col-start-1 col-end-2 row-start-3 row-end-4 h-8 text-[14px] md:h-10 md:text-[16px]"
               />
-              <div className="w-full flex items-center bg-white border border-primary rounded-sm h-8 text-[14px] md:rounded-md md:h-10 md:text-[16px]">
+              <div className="w-full flex justify-between align-center bg-white border border-primary rounded-sm bg-transparent row-start-4 row-end-5 h-8 text-[14px] md:h-10 md:flex md:text-[16px]">
                 <Button
                   onClick={() => handleFileUpload()}
                   type="button"
                   variant="ghost"
-                  className="flex-grow px-3 overflow-hidden"
+                  className="max-w-full h-full pl-3 py-1 font-medium text-left overflow-hidden"
                 >
                   <input
                     type="file"
@@ -161,54 +147,49 @@ const CompanyProfileForm = ({ handleNode }: CompanyProfileFormProps) => {
                     onChange={() => handleFileChange()}
                     className="hidden"
                   />
-                  {/* {fileName || placeholder} */}
-                  <div className="w-full min-w-0 flex text-left overflow-hidden">
-                    <p
-                      className={cn(
-                        "truncate font-light text-[14px] md:text-[16px]",
-                        {
-                          "text-muted-foreground": !fileName,
-                        }
-                      )}
-                    >
-                      {fileName || placeholder}
-                    </p>
-                  </div>
+                  <p
+                    className={cn(
+                      "w-full max-w-full min-w-0 truncate text-[14px] md:text-[16px]",
+                      {
+                        "text-muted-foreground": !fileName,
+                      }
+                    )}
+                  >
+                    {fileName || placeholder}
+                  </p>
                 </Button>
                 <button
                   type="button"
                   onClick={() => handleFileDelete()}
                   className="px-2"
                 >
-                  <X color="gray" className="w-[14px] md:w-[16px]" />
+                  <X color="gray" />
                 </button>
               </div>
-            </div>
-            <Button
-              variant={"default"}
-              className="w-fit aspect-square p-2 rounded-full h-8 text-[14px] md:h-10 md:text-[16px]"
-            >
-              <Plus className="w-[14px] md:w-[16px]" />
-            </Button>
-          </form>
+              <Button
+                variant={"default"}
+                className="w-full h-full col-start-2 col-end-3 row-start-4 row-end-5 font-medium h-8 text-[14px] p-0 md:h-10 md:px-3 md:text-[16px]"
+              >
+                추가하기
+              </Button>
+            </form>
+          </div>
         )}
         {open && submitted && (
-          <div className="flex flex-col items-start gap-2 px-5 pt-5 pb-[30px] lg:px-[30px] xl:px-0">
+          <div className="flex flex-col items-start gap-2 absolute bottom-[10%] left-[30px]">
             <Link href={"#"} onClick={() => alert("페이지 이동")}>
-              <Button className="h-8 text-[14px] md:h-10 md:text-[16px]">
-                결과 페이지로 이동
-              </Button>
+              <Button>결과 페이지로 이동</Button>
             </Link>
             <Button
               variant={"ghost"}
-              className="h-fit p-0 font-medium text-[12px] text-primary underline hover:text-white"
-              onClick={() => handleReset()}
+              className="h-fit p-0 font-medium text-[12px] text-primary underline hover:unset"
+              onClick={onResetClick}
             >
               다시 재출하기
             </Button>
           </div>
         )}
-      </div>
+      </>
     </div>
   );
 };
