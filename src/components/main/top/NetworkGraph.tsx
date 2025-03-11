@@ -27,8 +27,9 @@ interface Link {
   target: Node;
 }
 
-const INITIAL_LINKS: Link[] = totalData.map((node) => ({
-  source: totalData[0],
+const totalDataCopy = totalData.map((d) => ({ ...d }));
+const INITIAL_LINKS: Link[] = totalDataCopy.map((node) => ({
+  source: totalDataCopy[0],
   target: node,
 }));
 
@@ -41,7 +42,7 @@ const NetworkGraph = () => {
   const simulationRef = useRef<d3.Simulation<Node, Link>>(null);
   const isMobile = useIsMobile();
 
-  const [nodes, setNodes] = useState<Node[]>(() => totalData);
+  const [nodes, setNodes] = useState<Node[]>(() => totalDataCopy);
   const [links, setLinks] = useState<Link[]>(() => INITIAL_LINKS);
 
   const convertingNodeSize = (d: Node, number: number): number => {
@@ -339,7 +340,7 @@ const NetworkGraph = () => {
   };
 
   return (
-    <div className="w-screen h-screen bg-black relative">
+    <div className="w-screen h-screen bg-black relative lg:hidden">
       <svg ref={svgRef}></svg>
       <CompanyProfileForm handleNode={handleNode} />
     </div>
