@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import * as d3 from "d3";
-import { Link, Node } from "@/types/graph";
+import { DragEvent, Link, Node } from "@/types/graph";
 import CompanyProfileForm from "./CompanyProfileForm";
 import { useGraphContext } from "@/store/GraphContext";
 
@@ -18,7 +18,6 @@ const AToAGraph = () => {
     aToACenterNodes: centerNodes,
     addNewNode,
     reset,
-    newNode,
   } = useGraphContext((store) => store);
 
   // 그래프뷰 폭 조절
@@ -192,15 +191,15 @@ const AToAGraph = () => {
 
     simulation.on("tick", () => {
       link
-        .attr("x1", (d) => (d.source as any).x)
-        .attr("y1", (d) => (d.source as any).y)
-        .attr("x2", (d) => (d.target as any).x)
-        .attr("y2", (d) => (d.target as any).y);
+        .attr("x1", (d: Link) => d.source.x as number)
+        .attr("y1", (d: Link) => d.source.y as number)
+        .attr("x2", (d: Link) => d.target.x as number)
+        .attr("y2", (d: Link) => d.target.y as number);
 
       node.attr("transform", (d) => `translate(${d.x},${d.y})`);
     });
 
-    function dragstart(event: { active: any }, d: Node) {
+    function dragstart(event: DragEvent, d: Node) {
       if (!event.active) simulation.alphaTarget(0.3).restart();
       d.fx = d.x;
       d.fy = d.y;
@@ -211,7 +210,7 @@ const AToAGraph = () => {
       d.fy = event.y;
     }
 
-    function dragend(event: { active: any }, d: Node) {
+    function dragend(event: DragEvent, d: Node) {
       if (!event.active) simulation.alphaTarget(0);
       d.fx = null;
       d.fy = null;

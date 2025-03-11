@@ -17,3 +17,5 @@ export interface Link {
   source: Node;
   target: Node;
 }
+
+export type DragEvent = d3.D3DragEvent<SVGGElement, Node, Node>;

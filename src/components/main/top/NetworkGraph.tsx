@@ -5,11 +5,9 @@ import * as d3 from "d3";
 import CompanyProfileForm from "./CompanyProfileForm";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { useGraphContext } from "@/store/GraphContext";
-import { Link, Node } from "@/types/graph";
+import { DragEvent, Link, Node } from "@/types/graph";
 
 type Size = { width: number; height: number };
-
-type DragEventType = d3.D3DragEvent<SVGGElement, Node, Node>;
 
 const NetworkGraph = () => {
   const svgRef = useRef<SVGSVGElement>(null);
@@ -21,7 +19,6 @@ const NetworkGraph = () => {
     currentBubbleLinks: links,
     addNewNode,
     reset,
-    newNode,
   } = useGraphContext((store) => store);
 
   const convertingNodeSize = (d: Node, number: number): number => {
@@ -239,11 +236,8 @@ const NetworkGraph = () => {
       node.attr("transform", (d) => `translate(${d.x},${d.y})`);
     });
 
-    // // Peak를 중앙에 놓기
-    // setPeakCenter({ width, height });
-
     // 노드 드래그 이벤트 관련 함수들
-    function dragstart(event: DragEventType, d: Node) {
+    function dragstart(event: DragEvent, d: Node) {
       if (!event.active) simulation.alphaTarget(0.3).restart(); // 물리 엔진 활성화, 0.3: 업데이트 시간
       d.fx = d.x;
       d.fy = d.y;
@@ -254,7 +248,7 @@ const NetworkGraph = () => {
       d.fy = event.y;
     }
 
-    function dragend(event: DragEventType, d: Node) {
+    function dragend(event: DragEvent, d: Node) {
       if (!event.active) simulation.alphaTarget(0);
       d.fx = null;
       d.fy = null;

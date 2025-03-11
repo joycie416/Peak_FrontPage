@@ -95,7 +95,6 @@ const CompanyProfileForm = ({ handleNode }: CompanyProfileFormProps) => {
   };
 
   const handleReset = () =>
-    // e?: React.MouseEvent<HTMLButtonElement, MouseEvent>
     {
       handleFileDelete();
       setIsSubmitted(false);
