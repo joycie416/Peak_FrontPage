@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import React from "react";
-// import Background2 from "../../../public/main/vision-background-crop.svg";
 
 const VisionSection = () => {
   return (

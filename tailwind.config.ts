@@ -128,7 +128,13 @@ export default {
           "0%": {
             opacity: "1",
           },
+          "10%": {
+            opacity: "1",
+          },
           "90%": {
+            opacity: "0",
+          },
+          "100%": {
             opacity: "0",
           },
         },
