@@ -62,26 +62,6 @@ const NetworkGraph = () => {
     if (!!d.isNew) return newSize;
 
     return isMobile ? defaultSize * mobileRatio : defaultSize;
-
-    // if (!isMobile) {
-    //   if (d.id == 1 || !!d.isNew) {
-    //     return 50;
-    //   }
-
-    //   return !isNaN(total_funding)
-    //     ? Math.sqrt(total_funding) * 1.1 + number
-    //     : number;
-    // }
-    // // 모바일인 경우 노드 지름 절반으로
-    // // if (isMobile) {
-    // else {
-    //   if (d.id == 1) return 40;
-    //   if (!!d.isNew) return 30;
-
-    //   return !isNaN(total_funding)
-    //     ? (Math.sqrt(total_funding) * 1.1 + number) * mobileRatio
-    //     : number * mobileRatio;
-    // }
   };
 
   // 그래프뷰 폭 조절
@@ -91,7 +71,7 @@ const NetworkGraph = () => {
     return { width: window.innerWidth, height: window.innerHeight };
   });
 
-  useEffect(() => {
+  useEffect(function handleWindowResize() {
     if (typeof window === "undefined") return;
 
     const handleResize = () => {
@@ -103,8 +83,6 @@ const NetworkGraph = () => {
         return { width, height };
       });
       createGraph({ width, height });
-
-      // setPeakCenter({ width, height });
     };
 
     window.addEventListener("resize", handleResize);
@@ -115,7 +93,6 @@ const NetworkGraph = () => {
   }, []);
 
   // 그래프뷰 생성
-
   const createGraph = ({ width, height }: Size) => {
     // 기존 simulation이 있을 경우 중지하고 다시 실행
     d3.select(svgRef.current).selectAll("*").remove();
@@ -136,7 +113,6 @@ const NetworkGraph = () => {
       .select(svgRef.current)
       .attr("width", width)
       .attr("height", height);
-    // .style("border", "1px solid #340b60");
 
     // 물리 엔진 설정
     const simulation = d3
@@ -311,30 +287,17 @@ const NetworkGraph = () => {
     }
   };
 
-  // // Peak를 중앙에 놓기
-  // const setPeakCenter = ({ width, height }: Size) => {
-  //   if (simulationRef.current) {
-  //     simulationRef.current.nodes().forEach((node) => {
-  //       if (node.id === 1) {
-  //         node.fx = width / 2;
-  //         node.fy = height / 2;
-  //       }
-  //     });
+  useEffect(
+    function showGraph() {
+      if (!svgRef.current) return;
 
-  //     simulationRef.current
-  //       .force("center", d3.forceCenter(width / 2, height / 2))
-  //       .restart();
-  //   }
-  // };
+      // 기존 simulation이 있을 경우 중지하고 다시 실행
+      d3.select(svgRef.current).selectAll("*").remove();
 
-  useEffect(() => {
-    if (!svgRef.current) return;
-
-    // 기존 simulation이 있을 경우 중지하고 다시 실행
-    d3.select(svgRef.current).selectAll("*").remove();
-
-    createGraph({ width, height });
-  }, [nodes, width, height]);
+      createGraph({ width, height });
+    },
+    [nodes, width, height, isMobile]
+  );
 
   const handleNode = (
     mode: "new" | "reset",
