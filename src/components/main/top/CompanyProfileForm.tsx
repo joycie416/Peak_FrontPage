@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { ArrowLeft, Plus, X } from "lucide-react";
+import { useGraphContext } from "@/store/GraphContext";
 
 type CompanyProfileFormProps = {
   handleNode: (
@@ -18,10 +19,11 @@ type CompanyProfileFormProps = {
 
 const CompanyProfileForm = ({ handleNode }: CompanyProfileFormProps) => {
   // form 열린 상태
-  const [open, setOpen] = useState(false);
+  const { isFormOpen, setIsFormOpen, isSubmitted, setIsSubmitted } =
+    useGraphContext((store) => store);
 
-  // form 제출 상태
-  const [submitted, setSubitted] = useState(false);
+  // // form 제출 상태
+  // const [submitted, setSubitted] = useState(!!newNode);
 
   // 파일 업로드 관련
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -61,12 +63,13 @@ const CompanyProfileForm = ({ handleNode }: CompanyProfileFormProps) => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (
+      !isSubmitted &&
       companyRef.current &&
-      companyRef.current.value &&
+      companyRef.current.value.trim() &&
       executiveRef.current &&
-      executiveRef.current.value &&
+      executiveRef.current.value.trim() &&
       emailRef.current &&
-      emailRef.current.value &&
+      emailRef.current.value.trim() &&
       fileRef.current
     ) {
       handleNode(
@@ -75,17 +78,19 @@ const CompanyProfileForm = ({ handleNode }: CompanyProfileFormProps) => {
         executiveRef.current.value.trim(),
         emailRef.current.value.trim()
       );
-      setSubitted(true);
+      setIsSubmitted(true);
       return;
     }
-    alert("회사명, 이메일과 파일을 모두 입력해주세요.");
+    if (!isSubmitted) alert("회사명, 이메일과 파일을 모두 입력해주세요.");
+    if (isSubmitted) alert("이미 제출되었습니다. 새로고침해주세요.");
   };
 
   const handleUndo = () => {
     if (companyRef.current) companyRef.current.value = "";
     if (executiveRef.current) executiveRef.current.value = "";
     if (emailRef.current) emailRef.current.value = "";
-    setOpen(false);
+    if (fileRef.current) fileRef.current = null;
+    setIsFormOpen(false);
     handleFileDelete();
   };
 
@@ -93,21 +98,22 @@ const CompanyProfileForm = ({ handleNode }: CompanyProfileFormProps) => {
     // e?: React.MouseEvent<HTMLButtonElement, MouseEvent>
     {
       handleFileDelete();
-      setSubitted(false);
+      setIsSubmitted(false);
       handleNode("reset");
       if (companyRef.current) companyRef.current.value = "";
       if (executiveRef.current) executiveRef.current.value = "";
       if (emailRef.current) emailRef.current.value = "";
+      if (fileRef.current) fileRef.current = null;
     };
 
   const handleOpenFormClick = () => {
-    setOpen(true);
+    setIsFormOpen(true);
   };
 
   return (
     <div className="w-full h-fit flex items-end absolute bottom-0 right-0 left-0 font-pretendard transparent_to_black_to_b">
       <div className="w-full xl:max-w-desktop-width mx-auto">
-        {!open && (
+        {!isFormOpen && (
           <Button
             className="rounded-full font-medium mt-5 mb-[30px] ml-5 px-5 h-8 text-[14px] md:h-10 md:text-[16px] lg:px-[30px] xl:ml-0"
             onClick={() => handleOpenFormClick()}
@@ -115,7 +121,7 @@ const CompanyProfileForm = ({ handleNode }: CompanyProfileFormProps) => {
             회사 정보 제출하기
           </Button>
         )}
-        {open && !submitted && (
+        {isFormOpen && !isSubmitted && (
           <form
             onSubmit={handleSubmit}
             className="w-full px-5 pt-5 pb-[30px] flex gap-2 items-end lg:px-[30px] xl:px-0"
@@ -192,7 +198,7 @@ const CompanyProfileForm = ({ handleNode }: CompanyProfileFormProps) => {
             </Button>
           </form>
         )}
-        {open && submitted && (
+        {isFormOpen && isSubmitted && (
           <div className="flex flex-col items-start gap-2 px-5 pt-5 pb-[30px] lg:px-[30px] xl:px-0">
             <Link href={"#"} onClick={() => alert("페이지 이동")}>
               <Button className="h-8 text-[14px] md:h-10 md:text-[16px]">

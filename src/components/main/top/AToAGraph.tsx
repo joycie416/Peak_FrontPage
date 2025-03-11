@@ -1,30 +1,25 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import * as d3 from "d3";
 import { Link, Node } from "@/types/graph";
-import { getA2ARandomLinks } from "../../../lib/aToARandomLinks";
 import CompanyProfileForm from "./CompanyProfileForm";
+import { useGraphContext } from "@/store/GraphContext";
 
 type Size = { width: number; height: number };
 
 const AToAGraph = () => {
   const svgRef = useRef(null);
   const simulationRef = useRef<d3.Simulation<Node, Link>>(null);
-  // const width = window.innerWidth;
-  // const height = window.innerHeight;
-  const [nodes, setNodes] = useState<Node[]>([]);
-  const [links, setLinks] = useState<Link[]>([]);
+
   const {
-    nodes: INITIAL_NODES,
-    centerNodes,
-    links: INITIAL_LINKS,
-  } = useMemo(() => {
-    const { nodes, centerNodes, links } = getA2ARandomLinks();
-    setNodes(nodes);
-    setLinks(links);
-    return { nodes, centerNodes, links };
-  }, []);
+    currentAToANodes: nodes,
+    currentAToALinks: links,
+    aToACenterNodes: centerNodes,
+    addNewNode,
+    reset,
+    newNode,
+  } = useGraphContext((store) => store);
 
   // 그래프뷰 폭 조절
   const [{ width, height }, setSize] = useState<Size>(() => {
@@ -259,24 +254,11 @@ const AToAGraph = () => {
           isNew: true,
         };
 
-        setNodes((prevNodes) => {
-          const updatedNodes = [...prevNodes, newNode];
-
-          setLinks((prevLinks) => [
-            ...prevLinks,
-            { source: updatedNodes[0], target: newNode },
-            { source: centerNodes[0], target: newNode },
-            { source: centerNodes[1], target: newNode },
-            { source: centerNodes[5], target: newNode },
-          ]);
-
-          return updatedNodes;
-        });
+        addNewNode(newNode);
       }
     }
     if (mode === "reset") {
-      setNodes(INITIAL_NODES);
-      setLinks(INITIAL_LINKS);
+      reset();
     }
   };
 

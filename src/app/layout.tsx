@@ -38,7 +38,7 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body className={`${chakra.className} antialiased relative`}>
-        <SidebarProvider className="flex-col">
+        <SidebarProvider defaultOpen={false} className="flex-col">
           <AppSidebar />
           <Header />
           {children}

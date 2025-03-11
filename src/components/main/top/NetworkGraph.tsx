@@ -3,35 +3,9 @@
 import { useEffect, useRef, useState } from "react";
 import * as d3 from "d3";
 import CompanyProfileForm from "./CompanyProfileForm";
-import { totalData } from "@/constants/totalData";
 import { useIsMobile } from "@/hooks/use-mobile";
-// import PEAK from '@public/PEAK-simple-logo.svg'
-
-interface Node extends d3.SimulationNodeDatum {
-  id: number;
-  company: string;
-  key_executive: string;
-  industry: string;
-  address: string;
-  homepage: string;
-  email: string;
-  phone_number: string;
-  sales: string;
-  total_funding: string;
-  logo_url?: string;
-  isNew?: boolean;
-}
-
-interface Link {
-  source: Node;
-  target: Node;
-}
-
-const totalDataCopy = totalData.map((d) => ({ ...d }));
-const INITIAL_LINKS: Link[] = totalDataCopy.map((node) => ({
-  source: totalDataCopy[0],
-  target: node,
-}));
+import { useGraphContext } from "@/store/GraphContext";
+import { Link, Node } from "@/types/graph";
 
 type Size = { width: number; height: number };
 
@@ -42,8 +16,13 @@ const NetworkGraph = () => {
   const simulationRef = useRef<d3.Simulation<Node, Link>>(null);
   const isMobile = useIsMobile();
 
-  const [nodes, setNodes] = useState<Node[]>(() => totalDataCopy);
-  const [links, setLinks] = useState<Link[]>(() => INITIAL_LINKS);
+  const {
+    currentBubbleNodes: nodes,
+    currentBubbleLinks: links,
+    addNewNode,
+    reset,
+    newNode,
+  } = useGraphContext((store) => store);
 
   const convertingNodeSize = (d: Node, number: number): number => {
     const total_funding = Number(d.total_funding.split("억")[0]);
@@ -321,21 +300,11 @@ const NetworkGraph = () => {
           isNew: true,
         };
 
-        setNodes((prevNodes) => {
-          const updatedNodes = [...prevNodes, newNode];
-
-          setLinks((prevLinks) => [
-            ...prevLinks,
-            { source: updatedNodes[0], target: newNode },
-          ]);
-
-          return updatedNodes;
-        });
+        addNewNode(newNode);
       }
     }
     if (mode === "reset") {
-      setNodes(totalData);
-      setLinks(INITIAL_LINKS);
+      reset();
     }
   };
 
