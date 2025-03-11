@@ -9,7 +9,7 @@ import { DragEvent, Link, Node } from "@/types/graph";
 
 type Size = { width: number; height: number };
 
-const NetworkGraph = () => {
+const BubbleGraph = () => {
   const svgRef = useRef<SVGSVGElement>(null);
   const simulationRef = useRef<d3.Simulation<Node, Link>>(null);
   const isMobile = useIsMobile();
@@ -310,4 +310,4 @@ const NetworkGraph = () => {
   );
 };
 
-export default NetworkGraph;
+export default BubbleGraph;
