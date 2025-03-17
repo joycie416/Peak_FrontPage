@@ -23,6 +23,7 @@ const Header = () => {
             <HeaderLink to="/" />
             <HeaderLink to="/solution" />
             <HeaderLink to="/dashboard" />
+            <HeaderLink to="/map" />
           </div>
           <Image src={PEAK} alt="PEAK" height={35} className="self-center" />
           <div className="my-auto ml-auto space-x-[17px]">

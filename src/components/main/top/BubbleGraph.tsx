@@ -303,7 +303,7 @@ const BubbleGraph = () => {
   };
 
   return (
-    <div className="w-screen h-screen bg-black relative lg:hidden">
+    <div className="w-screen h-screen bg-black relative">
       <svg ref={svgRef}></svg>
       <CompanyProfileForm handleNode={handleNode} />
     </div>
