@@ -262,7 +262,7 @@ const AToAGraph = () => {
   };
 
   return (
-    <div className="w-screen h-screen bg-black relative max-lg:hidden">
+    <div className="w-screen h-screen bg-black relative">
       <svg ref={svgRef}></svg>
       <CompanyProfileForm handleNode={handleNode} />
     </div>
